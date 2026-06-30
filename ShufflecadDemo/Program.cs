@@ -5,7 +5,7 @@ using RobocadCs.Shufflecad;
 
 sealed class DemoRobot : Robot
 {
-    public DemoRobot() : base(false, new RobotConfiguration { SimLogPath = "shufflecad-demo.log" })
+    public DemoRobot() : base(false, new DefaultCommonConfiguration { SimLogPath = "shufflecad-demo.log" })
     {
     }
 }

@@ -29,6 +29,7 @@ static class Program
         var vLidar = dash.AddVar(new ShuffleVariable("lidar", ShuffleVariable.RadarType, ShuffleVariable.OutVar));
         var analog1 = dash.AddVar(new ShuffleVariable("analog1", ShuffleVariable.FloatType, ShuffleVariable.OutVar));
         var vServo = dash.AddVar(new ShuffleVariable("servo_1", ShuffleVariable.FloatType, ShuffleVariable.InVar));
+        var cameraWidth = dash.AddVar(new ShuffleVariable("cameraWidth", ShuffleVariable.FloatType, ShuffleVariable.InVar));
 
         var cam = dash.AddVar(new CameraVariable("camera"));
 
@@ -83,7 +84,11 @@ static class Program
             robot.SetAngleServo(vServo.GetFloat(), 1);
 
             CameraFrame img = robot.CameraImage;
-            if (img != null) cam.SetMat(img);
+            if (img != null)
+            {
+                int targetW = (int)cameraWidth.GetFloat();
+                cam.SetMat(targetW > 0 ? ResizeWidth(img, targetW) : img);
+            }
             
             Thread.Sleep(50);
         }
@@ -92,5 +97,29 @@ static class Program
         dash.Stop();
         robot.Stop();
         return 0;
+    }
+
+    static CameraFrame ResizeWidth(CameraFrame src, int targetW)
+    {
+        int w = src.Width, h = src.Height;
+        if (targetW == w || w == 0 || h == 0) return src;
+
+        int targetH = Math.Max(1, (int)((long)h * targetW / w));
+        byte[] s = src.Bgr;
+        var d = new byte[targetW * targetH * 3];
+        for (int y = 0; y < targetH; y++)
+        {
+            int sy = y * h / targetH;
+            for (int x = 0; x < targetW; x++)
+            {
+                int sx = x * w / targetW;
+                int si = (sy * w + sx) * 3;
+                int di = (y * targetW + x) * 3;
+                d[di] = s[si];
+                d[di + 1] = s[si + 1];
+                d[di + 2] = s[si + 2];
+            }
+        }
+        return new CameraFrame(targetW, targetH, d);
     }
 }
