@@ -18,6 +18,8 @@ static class Program
         var dash = new Shufflecad(robot);
         Thread.Sleep(100);
 
+        dash.PrintToLog($"Test log");
+
         var vYaw = dash.AddVar(new ShuffleVariable("yaw", ShuffleVariable.FloatType, ShuffleVariable.OutVar));
         var vYawG = dash.AddVar(new ShuffleVariable("yaw_g", ShuffleVariable.ChartType, ShuffleVariable.OutVar));
         var vUs1 = dash.AddVar(new ShuffleVariable("us_1", ShuffleVariable.FloatType, ShuffleVariable.OutVar));

@@ -52,7 +52,7 @@ namespace RobocadCs.Shufflecad
             get { lock (DataLock) { return new Dictionary<string, int>(joystickData); } }
         }
 
-        public void PrintToLog(string message, string messageType = LogInfo, string color = "#cccccc")
+        public void PrintToLog(string message, string messageType = LogInfo, string color = "#808080" )
         {
             lock (DataLock) { PrintArray.Add(messageType + "@" + message + color); }
         }
