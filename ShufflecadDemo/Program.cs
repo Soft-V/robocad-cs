@@ -3,20 +3,13 @@ using System.Threading;
 using RobocadCs.Internal.Common;
 using RobocadCs;
 
-sealed class DemoRobot : Robot
-{
-    public DemoRobot() : base(false, new DefaultCommonConfiguration { SimLogPath = "shufflecad-demo.log" })
-    {
-    }
-}
-
 static class Program
 {
     static int Main(string[] args)
     {
         int runSeconds = (args.Length > 0 && int.TryParse(args[0], out int s)) ? s : -1;
 
-        var robot = new DemoRobot();
+        var robot = new RobotAlgaritm();
         var dash = new Shufflecad(robot);
 
         var counter = dash.AddVar(new ShuffleVariable("counter", ShuffleVariable.FloatType, ShuffleVariable.OutVar));
