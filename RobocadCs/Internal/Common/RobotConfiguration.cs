@@ -24,7 +24,6 @@ namespace RobocadCs.Internal.Common
     {
         public DefaultAlgaritmConfiguration()
         {
-            CameraIndex = 0;
             WithPiBlaster = false;
             VmxPort = "/dev/spidev0.0";
             VmxCh = 0;
