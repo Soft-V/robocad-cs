@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using RobocadCs.Internal.Common;
 
-namespace RobocadCs.Shufflecad
+namespace RobocadCs
 {
     public class Shufflecad
     {
@@ -160,10 +160,10 @@ namespace RobocadCs.Shufflecad
         public byte[] ReadData()
         {
             byte[] lenBuf = new byte[4];
-            if (!SocketUtil.RecvAll(_sock, lenBuf, 4)) return Array.Empty<byte>();
+            if (!SocketUtil.ReceiveAll(_sock, lenBuf, 4)) return Array.Empty<byte>();
             int size = (int)SocketUtil.ReadUint32Le(lenBuf);
             byte[] buf = new byte[size];
-            if (size > 0 && !SocketUtil.RecvAll(_sock, buf, size)) return Array.Empty<byte>();
+            if (size > 0 && !SocketUtil.ReceiveAll(_sock, buf, size)) return Array.Empty<byte>();
             return buf;
         }
 

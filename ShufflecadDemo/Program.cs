@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 using RobocadCs.Internal.Common;
-using RobocadCs.Shufflecad;
+using RobocadCs;
 
 sealed class DemoRobot : Robot
 {

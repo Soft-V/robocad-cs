@@ -2,7 +2,7 @@ using System;
 using RobocadCs.Internal;
 using RobocadCs.Internal.Common;
 
-namespace RobocadCs.Algaritm
+namespace RobocadCs
 {
     public class RobotAlgaritm : Robot
     {

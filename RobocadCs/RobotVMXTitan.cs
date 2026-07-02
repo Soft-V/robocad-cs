@@ -1,7 +1,7 @@
 using RobocadCs.Internal;
 using RobocadCs.Internal.Common;
 
-namespace RobocadCs.Studica
+namespace RobocadCs
 {
     public class RobotVMXTitan : Robot
     {

@@ -1,8 +1,8 @@
 using System;
 using System.Threading;
-using RobocadCs.Algaritm;
+using RobocadCs;
 using RobocadCs.Internal.Common;
-using RobocadCs.Shufflecad;
+using RobocadCs;
 
 
 static class Program

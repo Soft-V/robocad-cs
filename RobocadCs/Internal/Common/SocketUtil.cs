@@ -30,7 +30,7 @@ namespace RobocadCs.Internal.Common
             return true;
         }
 
-        public static bool RecvAll(Socket s, byte[] buffer, int count)
+        public static bool ReceiveAll(Socket s, byte[] buffer, int count)
         {
             int got = 0;
             while (got < count)

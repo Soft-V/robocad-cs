@@ -27,7 +27,7 @@ public class TalkPort : PortBase
                 
             if (toSend.Length > 0 && !SocketUtil.SendAll(Sct, toSend)) break;
 
-            if (!SocketUtil.RecvAll(Sct, ack, 8)) break;
+            if (!SocketUtil.ReceiveAll(Sct, ack, 8)) break;
             Thread.Sleep(4);
         }
 

@@ -22,11 +22,11 @@ public class ListenPort : PortBase
             if (!SocketUtil.SendAll(Sct, msgLen)) break;
             if (!SocketUtil.SendAll(Sct, msg)) break;
 
-            if (!SocketUtil.RecvAll(Sct, lenBuf, 4)) break;
+            if (!SocketUtil.ReceiveAll(Sct, lenBuf, 4)) break;
             int length = (int)SocketUtil.ReadUint32Le(lenBuf);
 
             byte[] buffer = new byte[length];
-            if (length > 0 && !SocketUtil.RecvAll(Sct, buffer, length)) break;
+            if (length > 0 && !SocketUtil.ReceiveAll(Sct, buffer, length)) break;
 
             lock (_lock) { _outBytes = buffer; }
             Thread.Sleep(4);
