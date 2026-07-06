@@ -26,4 +26,6 @@ public abstract class RobocadConnection
     }
 
     protected abstract void Loop();
+
+    protected abstract byte[] BuildTx();
 }

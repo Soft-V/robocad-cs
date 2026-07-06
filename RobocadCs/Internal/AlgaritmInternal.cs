@@ -36,24 +36,29 @@ namespace RobocadCs.Internal
 
         private class RobocadConnectionAlgaritm : RobocadConnection
         {
+            // TX: 28 floats (112 bytes)
+            protected override byte[] BuildTx()
+            {
+                var w = new ByteWriter(112);
+                w.WriteFloat(_ri.SpeedMotor0); w.WriteFloat(_ri.SpeedMotor1);
+                w.WriteFloat(_ri.SpeedMotor2); w.WriteFloat(_ri.SpeedMotor3);
+                for (int i = 0; i < 8; i++) w.WriteFloat(_ri.ServoAngles[i]);
+                w.WriteFloat(_ri.AdditionalServo1); w.WriteFloat(_ri.AdditionalServo2);
+                w.WriteFloat(_ri.StepMotor1Steps); w.WriteFloat(_ri.StepMotor2Steps);
+                w.WriteFloat(_ri.StepMotor1StepsPerS); w.WriteFloat(_ri.StepMotor2StepsPerS);
+                w.WriteFloat(_ri.StepMotor1Direction ? 1f : 0f);
+                w.WriteFloat(_ri.StepMotor2Direction ? 1f : 0f);
+                w.WriteFloat(_ri.UsePid ? 1f : 0f);
+                w.WriteFloat(_ri.PPid); w.WriteFloat(_ri.IPid); w.WriteFloat(_ri.DPid);
+                for (int i = 0; i < 4; i++) w.WriteFloat(_ri.Outputs[i] ? 1f : 0f);
+                return w.ToArray();
+            }
+
             protected override void Loop()
             {
                 while (!_stop)
                 {
-                    // TX: 28 floats (112 bytes)
-                    var w = new ByteWriter(112);
-                    w.WriteFloat(_ri.SpeedMotor0); w.WriteFloat(_ri.SpeedMotor1);
-                    w.WriteFloat(_ri.SpeedMotor2); w.WriteFloat(_ri.SpeedMotor3);
-                    for (int i = 0; i < 8; i++) w.WriteFloat(_ri.ServoAngles[i]);
-                    w.WriteFloat(_ri.AdditionalServo1); w.WriteFloat(_ri.AdditionalServo2);
-                    w.WriteFloat(_ri.StepMotor1Steps); w.WriteFloat(_ri.StepMotor2Steps);
-                    w.WriteFloat(_ri.StepMotor1StepsPerS); w.WriteFloat(_ri.StepMotor2StepsPerS);
-                    w.WriteFloat(_ri.StepMotor1Direction ? 1f : 0f);
-                    w.WriteFloat(_ri.StepMotor2Direction ? 1f : 0f);
-                    w.WriteFloat(_ri.UsePid ? 1f : 0f);
-                    w.WriteFloat(_ri.PPid); w.WriteFloat(_ri.IPid); w.WriteFloat(_ri.DPid);
-                    for (int i = 0; i < 4; i++) w.WriteFloat(_ri.Outputs[i] ? 1f : 0f);
-                    _conn.SetData(w.ToArray());
+                    _conn.SetData(BuildTx());
 
                     // RX: <4i4f8H3f14B = 74 bytes
                     byte[] d = _conn.GetData();

@@ -102,25 +102,30 @@ namespace RobocadCs.Internal
                 catch { }
             }
 
+            private byte[] BuildTx()
+            {
+                var w = new ByteWriter(88);
+                w.WriteFloat(_ri.SpeedMotor0);
+                w.WriteFloat(_ri.SpeedMotor1);
+                w.WriteFloat(_ri.SpeedMotor2);
+                w.WriteFloat(_ri.SpeedMotor3);
+                w.WriteFloat(_ri.SpeedMotor4);
+                w.WriteFloat(_ri.SpeedMotor5);
+                w.WriteFloat(_ri.SpeedMotor6);
+                w.WriteFloat(_ri.SpeedMotor7);
+                for (int i = 0; i < 10; i++) w.WriteFloat(_ri.ServoValues[i]);
+                w.WriteFloat(_ri.Led0 ? 1f : 0f);
+                w.WriteFloat(_ri.Led1 ? 1f : 0f);
+                w.WriteFloat(_ri.Led2 ? 1f : 0f);
+                w.WriteFloat(_ri.Led3 ? 1f : 0f);
+                return w.ToArray();
+            }
+
             private void Loop()
             {
                 while (!_stop)
                 {
-                    var w = new ByteWriter(88);
-                    w.WriteFloat(_ri.SpeedMotor0);
-                    w.WriteFloat(_ri.SpeedMotor1);
-                    w.WriteFloat(_ri.SpeedMotor2);
-                    w.WriteFloat(_ri.SpeedMotor3);
-                    w.WriteFloat(_ri.SpeedMotor4);
-                    w.WriteFloat(_ri.SpeedMotor5);
-                    w.WriteFloat(_ri.SpeedMotor6);
-                    w.WriteFloat(_ri.SpeedMotor7);
-                    for (int i = 0; i < 10; i++) w.WriteFloat(_ri.ServoValues[i]);
-                    w.WriteFloat(_ri.Led0 ? 1f : 0f);
-                    w.WriteFloat(_ri.Led1 ? 1f : 0f);
-                    w.WriteFloat(_ri.Led2 ? 1f : 0f);
-                    w.WriteFloat(_ri.Led3 ? 1f : 0f);
-                    _conn.SetData(w.ToArray());
+                    _conn.SetData(BuildTx());
 
                     byte[] d = _conn.GetData();
                     if (d.Length >= 76)

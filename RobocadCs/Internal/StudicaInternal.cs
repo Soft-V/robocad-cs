@@ -75,18 +75,23 @@ namespace RobocadCs.Internal
         {
             private StudicaInternal Ri => (StudicaInternal)_ri;
 
+            // TX: 14 floats (speeds[4] + hcdio[10]) = 56 bytes
+            protected override byte[] BuildTx()
+            {
+                var w = new ByteWriter(56);
+                w.WriteFloat(Ri.SpeedMotor0);
+                w.WriteFloat(Ri.SpeedMotor1);
+                w.WriteFloat(Ri.SpeedMotor2);
+                w.WriteFloat(Ri.SpeedMotor3);
+                for (int i = 0; i < 10; i++) w.WriteFloat(Ri.HcdioValues[i]);
+                return w.ToArray();
+            }
+
             protected override void Loop()
             {
                 while (!_stop)
                 {
-                    // TX: 14 floats (speeds[4] + hcdio[10]) = 56 bytes
-                    var w = new ByteWriter(56);
-                    w.WriteFloat(Ri.SpeedMotor0);
-                    w.WriteFloat(Ri.SpeedMotor1);
-                    w.WriteFloat(Ri.SpeedMotor2);
-                    w.WriteFloat(Ri.SpeedMotor3);
-                    for (int i = 0; i < 10; i++) w.WriteFloat(Ri.HcdioValues[i]);
-                    _conn.SetData(w.ToArray());
+                    _conn.SetData(BuildTx());
 
                     // RX: <4i2f4Hf16B = 52 bytes
                     byte[] d = _conn.GetData();
