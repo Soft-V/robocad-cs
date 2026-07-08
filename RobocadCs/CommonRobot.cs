@@ -73,31 +73,9 @@ namespace RobocadCs.Common
         public bool Led2 { get => _internal.Led2; set => _internal.Led2 = value; }
         public bool Led3 { get => _internal.Led3; set => _internal.Led3 = value; }
 
-        public CameraFrame CameraImage
-        {
-            get
-            {
-                CameraFrame img = _internal.GetCamera();
-                if (img == null) return null;
-                return Rotate180Flip(img);
-            }
-        }
+        public CameraFrame CameraImage => _internal.GetCamera();
 
         public void SetAngleServo(float value, int port) => _internal.SetServoAngle(value, port - 1);
         public void SetPwmServo(float value, int port) => _internal.SetServoPwm(value, port - 1);
-
-        private static CameraFrame Rotate180Flip(CameraFrame f)
-        {
-            int w = f.Width, h = f.Height;
-            byte[] src = f.Bgr;
-            byte[] dst = new byte[src.Length];
-            for (int y = 0; y < h; y++)
-            {
-                int srcRow = y * w * 3;
-                int dstRow = (h - 1 - y) * w * 3;
-                System.Array.Copy(src, srcRow, dst, dstRow, w * 3);
-            }
-            return new CameraFrame(w, h, dst);
-        }
     }
 }

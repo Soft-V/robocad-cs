@@ -45,7 +45,7 @@ namespace RobocadCs.Internal.Common
                 bgr[i + 1] = data[i + 1];
                 bgr[i + 2] = data[i];
             }
-            return new CameraFrame(640, 480, bgr);
+            return Rotate180Flip(new CameraFrame(640, 480, bgr));
         }
 
         public override float[] GetLidar() => Array.Empty<float>();
@@ -53,5 +53,20 @@ namespace RobocadCs.Internal.Common
         public void SetData(byte[] data) => _talkChannel.SetBytesSafe(data);
 
         public byte[] GetData() => _listenChannel.GetBytesSafe();
+        
+        private CameraFrame Rotate180Flip(CameraFrame f)
+        {
+            int w = f.Width, h = f.Height;
+            byte[] src = f.Bgr;
+            byte[] dst = new byte[src.Length];
+            for (int y = 0; y < h; y++)
+            {
+                int srcRow = y * w * 3;
+                int dstRow = (h - 1 - y) * w * 3;
+                System.Array.Copy(src, srcRow, dst, dstRow, w * 3);
+            }
+
+            return new CameraFrame(w, h, dst);
+        }
     }
 }
