@@ -30,6 +30,7 @@ static class Program
         var vDrive = dash.AddVar(new ShuffleVariable("drive", ShuffleVariable.StringType, ShuffleVariable.OutVar));
         var vLidar = dash.AddVar(new ShuffleVariable("lidar", ShuffleVariable.RadarType, ShuffleVariable.OutVar));
         var analog1 = dash.AddVar(new ShuffleVariable("analog1", ShuffleVariable.FloatType, ShuffleVariable.OutVar));
+        var vOutputs = dash.AddVar(new ShuffleVariable("outputs", ShuffleVariable.StringType, ShuffleVariable.OutVar));
         var vServo = dash.AddVar(new ShuffleVariable("servo_1", ShuffleVariable.FloatType, ShuffleVariable.InVar));
         var cameraWidth = dash.AddVar(new ShuffleVariable("cameraWidth", ShuffleVariable.FloatType, ShuffleVariable.InVar));
 
@@ -84,6 +85,11 @@ static class Program
             if (lidar.Length > 0) vLidar.SetRadar(lidar);
 
             robot.SetAngleServo(vServo.GetFloat(), 1);
+            
+            const int OUT_COUNT = 2;
+            int activeOut = (int)((frame / 20) % OUT_COUNT);
+            for (int i = 0; i < OUT_COUNT; i++)
+                robot.Outputs[i] = (i == activeOut);
 
             using (Mat img = robot.CameraImage)
             {
@@ -104,6 +110,7 @@ static class Program
                 }
             }
 
+            frame++;
             Thread.Sleep(50);
         }
 
