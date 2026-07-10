@@ -1,4 +1,6 @@
 using System;
+using System.Runtime.InteropServices;
+using OpenCvSharp;
 
 namespace RobocadCs.Internal.Common
 {
@@ -32,20 +34,18 @@ namespace RobocadCs.Internal.Common
             _cameraChannel.Stop();
         }
 
-        public override CameraFrame GetCamera()
+        // Returns a new BGR Mat (owned by the caller — dispose it). null if no frame yet.
+        public override Mat GetCamera()
         {
             byte[] data = _cameraChannel.GetBytesSafe();
             if (data.Length != CameraBytes) return null;
 
-            // incoming stream is RGB; convert to BGR
-            byte[] bgr = new byte[CameraBytes];
-            for (int i = 0; i < CameraBytes; i += 3)
-            {
-                bgr[i] = data[i + 2];
-                bgr[i + 1] = data[i + 1];
-                bgr[i + 2] = data[i];
-            }
-            return Rotate180Flip(new CameraFrame(640, 480, bgr));
+            // incoming stream is RGB 640x480; convert to BGR and flip vertically
+            var frame = new Mat(480, 640, MatType.CV_8UC3);
+            Marshal.Copy(data, 0, frame.Data, data.Length);
+            Cv2.CvtColor(frame, frame, ColorConversionCodes.RGB2BGR);
+            Cv2.Flip(frame, frame, FlipMode.X);
+            return frame;
         }
 
         public override float[] GetLidar() => Array.Empty<float>();
@@ -53,20 +53,5 @@ namespace RobocadCs.Internal.Common
         public void SetData(byte[] data) => _talkChannel.SetBytesSafe(data);
 
         public byte[] GetData() => _listenChannel.GetBytesSafe();
-        
-        private CameraFrame Rotate180Flip(CameraFrame f)
-        {
-            int w = f.Width, h = f.Height;
-            byte[] src = f.Bgr;
-            byte[] dst = new byte[src.Length];
-            for (int y = 0; y < h; y++)
-            {
-                int srcRow = y * w * 3;
-                int dstRow = (h - 1 - y) * w * 3;
-                System.Array.Copy(src, srcRow, dst, dstRow, w * 3);
-            }
-
-            return new CameraFrame(w, h, dst);
-        }
     }
 }

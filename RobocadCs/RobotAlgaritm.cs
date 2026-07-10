@@ -1,4 +1,5 @@
 using System;
+using OpenCvSharp;
 using RobocadCs.Internal;
 using RobocadCs.Internal.Common;
 
@@ -81,7 +82,7 @@ namespace RobocadCs
             _internal.LimitH2, _internal.LimitL2, _internal.LimitH3, _internal.LimitL3
         };
 
-        public CameraFrame CameraImage => _internal.GetCamera();
+        public Mat CameraImage => _internal.GetCamera();
         public float[] LidarData => _internal.GetLidar();
 
         public void SetAngleServo(float value, int port) => _internal.SetServoAngle(value, port - 1);

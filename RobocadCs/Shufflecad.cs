@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using OpenCvSharp;
 using RobocadCs.Internal.Common;
 
 namespace RobocadCs
@@ -15,7 +16,7 @@ namespace RobocadCs
         public const string LogWarning = "warning";
         public const string LogError = "error";
 
-        public static Func<CameraFrame, byte[]> JpegEncoder = OpenCvImaging.EncodeJpeg;
+        public static Func<Mat, byte[]> JpegEncoder = OpenCvImaging.EncodeJpeg;
 
         internal readonly object DataLock = new object();
         internal readonly List<ShuffleVariable> Variables = new List<ShuffleVariable>();
@@ -118,27 +119,37 @@ namespace RobocadCs
     public class CameraVariable
     {
         public string Name;
-        private CameraFrame _frame;
+        private Mat _frame;
         public int Width;
         public int Height;
         private readonly object _lock = new object();
 
         public CameraVariable(string name) { Name = name; }
 
-        public void SetMat(CameraFrame frame)
+        // Stores a private copy of the frame; the caller keeps ownership of theirs.
+        public void SetMat(Mat frame)
         {
-            if (frame == null) return;
-            lock (_lock) { _frame = frame; Width = frame.Width; Height = frame.Height; }
+            if (frame == null || frame.Empty()) return;
+            Mat copy = frame.Clone();
+            lock (_lock)
+            {
+                _frame?.Dispose();
+                _frame = copy;
+                Width = copy.Width;
+                Height = copy.Height;
+            }
         }
 
         internal byte[] GetValue()
         {
-            CameraFrame f;
-            lock (_lock) { f = _frame; }
-            if (f != null && Shufflecad.JpegEncoder != null)
+            // Encode under the lock: SetMat may Dispose the stored Mat concurrently.
+            lock (_lock)
             {
-                try { return Shufflecad.JpegEncoder(f) ?? Encoding.UTF8.GetBytes("null"); }
-                catch (Exception e) { Console.Error.WriteLine("JPEG encode error: " + e.Message); return Encoding.UTF8.GetBytes("null"); }
+                if (_frame != null && Shufflecad.JpegEncoder != null)
+                {
+                    try { return Shufflecad.JpegEncoder(_frame) ?? Encoding.UTF8.GetBytes("null"); }
+                    catch (Exception e) { Console.Error.WriteLine("JPEG encode error: " + e.Message); return Encoding.UTF8.GetBytes("null"); }
+                }
             }
             return Encoding.UTF8.GetBytes("null");
         }

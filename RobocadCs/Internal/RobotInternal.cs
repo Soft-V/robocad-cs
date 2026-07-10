@@ -1,3 +1,4 @@
+using OpenCvSharp;
 using RobocadCs.Internal.Common;
 
 namespace RobocadCs.Internal;
@@ -104,7 +105,7 @@ public abstract class RobotInternal
     
     protected Updater CreateUpdater(Robot robot) => new Updater(robot);
     
-    public CameraFrame GetCamera() => _connection.GetCamera();
+    public Mat GetCamera() => _connection.GetCamera();
     public float[] GetLidar() => _connection.GetLidar();
     protected abstract TitanCom CreateTitanCom();
     protected abstract VmxSpi CreateVmxSpi();

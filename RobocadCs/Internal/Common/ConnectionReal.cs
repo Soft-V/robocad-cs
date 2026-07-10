@@ -78,16 +78,16 @@ namespace RobocadCs.Internal.Common
             _lib?.Dispose();
         }
 
-        public override CameraFrame GetCamera()
+        // Returns the captured BGR Mat (owned by the caller — dispose it). null on failure.
+        public override Mat GetCamera()
         {
             if (_camera == null) return null;
             try
             {
-                using (var frame = new Mat())
-                {
-                    if (_camera.Read(frame) && !frame.Empty())
-                        return OpenCvImaging.ToFrame(frame);
-                }
+                var frame = new Mat();
+                if (_camera.Read(frame) && !frame.Empty())
+                    return frame;
+                frame.Dispose();
             }
             catch (Exception e)
             {

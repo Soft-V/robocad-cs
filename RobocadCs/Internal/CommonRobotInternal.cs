@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using OpenCvSharp;
 using RobocadCs.Internal.Common;
 
 namespace RobocadCs.Internal
@@ -69,7 +70,7 @@ namespace RobocadCs.Internal
             _connection?.Stop();
         }
 
-        public CameraFrame GetCamera() => _connection.GetCamera();
+        public Mat GetCamera() => _connection.GetCamera();
 
         public void SetServoAngle(float angle, int pin) => ServoValues[pin] = (float)(0.000666 * angle + 0.05);
         public void SetServoPwm(float pwm, int pin) => ServoValues[pin] = pwm;

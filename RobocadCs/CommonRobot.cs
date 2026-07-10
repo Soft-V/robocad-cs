@@ -1,3 +1,4 @@
+using OpenCvSharp;
 using RobocadCs.Internal;
 using RobocadCs.Internal.Common;
 
@@ -73,7 +74,7 @@ namespace RobocadCs.Common
         public bool Led2 { get => _internal.Led2; set => _internal.Led2 = value; }
         public bool Led3 { get => _internal.Led3; set => _internal.Led3 = value; }
 
-        public CameraFrame CameraImage => _internal.GetCamera();
+        public Mat CameraImage => _internal.GetCamera();
 
         public void SetAngleServo(float value, int port) => _internal.SetServoAngle(value, port - 1);
         public void SetPwmServo(float value, int port) => _internal.SetServoPwm(value, port - 1);

@@ -1,3 +1,4 @@
+using OpenCvSharp;
 using RobocadCs.Internal;
 using RobocadCs.Internal.Common;
 
@@ -60,7 +61,7 @@ namespace RobocadCs
             _internal.Flex4, _internal.Flex5, _internal.Flex6, _internal.Flex7
         };
 
-        public CameraFrame CameraImage => _internal.GetCamera();
+        public Mat CameraImage => _internal.GetCamera();
 
         public void SetAngleHcdio(float value, int port) => _internal.SetServoAngle(value, port - 1);
         public void SetPwmHcdio(float value, int port) => _internal.SetServoPwm(value, port - 1);

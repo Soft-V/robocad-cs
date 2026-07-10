@@ -1,8 +1,8 @@
 using System;
 using System.Threading;
+using OpenCvSharp;
 using RobocadCs;
 using RobocadCs.Internal.Common;
-using RobocadCs;
 
 
 static class Program
@@ -14,13 +14,13 @@ static class Program
     {
         int runSeconds = (args.Length > 0 && int.TryParse(args[0], out int s)) ? s : -1;
 
-        var robot = new RobotAlgaritm(true);
+        var robot = new RobotAlgaritm(false);
         var dash = new Shufflecad(robot);
         Thread.Sleep(100);
 
         dash.PrintToLog($"Test log");
 
-        var vYaw = dash.AddVar(new ShuffleVariable("yaw", ShuffleVariable.FloatType, ShuffleVariable.OutVar));
+        var vYaw = dash.AddVar(new ShuffleVariable("yaw", ShuffleVariable.FloatType, ShuffleVariable.InVar ));
         var vYawG = dash.AddVar(new ShuffleVariable("yaw_g", ShuffleVariable.ChartType, ShuffleVariable.OutVar));
         var vUs1 = dash.AddVar(new ShuffleVariable("us_1", ShuffleVariable.FloatType, ShuffleVariable.OutVar));
         var vUs2 = dash.AddVar(new ShuffleVariable("us_2", ShuffleVariable.FloatType, ShuffleVariable.OutVar));
@@ -85,13 +85,25 @@ static class Program
 
             robot.SetAngleServo(vServo.GetFloat(), 1);
 
-            CameraFrame img = robot.CameraImage;
-            if (img != null)
+            using (Mat img = robot.CameraImage)
             {
-                int targetW = (int)cameraWidth.GetFloat();
-                cam.SetMat(targetW > 0 ? ResizeWidth(img, targetW) : img);
+                if (img != null)
+                {
+                    int targetW = (int)cameraWidth.GetFloat();
+                    if (targetW > 0 && targetW != img.Width && img.Width > 0 && img.Height > 0)
+                    {
+                        int targetH = Math.Max(1, (int)((long)img.Height * targetW / img.Width));
+                        using var resized = new Mat();
+                        Cv2.Resize(img, resized, new Size(targetW, targetH));
+                        cam.SetMat(resized);
+                    }
+                    else
+                    {
+                        cam.SetMat(img);
+                    }
+                }
             }
-            
+
             Thread.Sleep(50);
         }
 
@@ -99,29 +111,5 @@ static class Program
         dash.Stop();
         robot.Stop();
         return 0;
-    }
-
-    static CameraFrame ResizeWidth(CameraFrame src, int targetW)
-    {
-        int w = src.Width, h = src.Height;
-        if (targetW == w || w == 0 || h == 0) return src;
-
-        int targetH = Math.Max(1, (int)((long)h * targetW / w));
-        byte[] s = src.Bgr;
-        var d = new byte[targetW * targetH * 3];
-        for (int y = 0; y < targetH; y++)
-        {
-            int sy = y * h / targetH;
-            for (int x = 0; x < targetW; x++)
-            {
-                int sx = x * w / targetW;
-                int si = (sy * w + sx) * 3;
-                int di = (y * targetW + x) * 3;
-                d[di] = s[si];
-                d[di + 1] = s[si + 1];
-                d[di + 2] = s[si + 2];
-            }
-        }
-        return new CameraFrame(targetW, targetH, d);
     }
 }
