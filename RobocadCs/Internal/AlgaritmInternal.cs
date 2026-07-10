@@ -13,11 +13,6 @@ namespace RobocadCs.Internal
         
         public void SetServoAngle(float angle, int pin) => ServoAngles[pin] = angle;
 
-        public void SetOutput(int pin, bool value)
-        {
-            if (pin >= 0 && pin < 4) Outputs[pin] = value;
-        }
-
         public void StepMotorMove(int num, int steps, int stepsPerSecond, bool direction)
         {
             if (num == 1)

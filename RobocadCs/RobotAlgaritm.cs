@@ -60,8 +60,7 @@ namespace RobocadCs
         public int Analog8 => _internal.Analog8;
 
         public bool[] Inputs => (bool[])_internal.Inputs.Clone();
-        public bool[] Outputs => (bool[])_internal.Outputs.Clone();
-        public void SetOutput(bool value, int port) => _internal.SetOutput(port - 1, value);
+        public bool[] Outputs => _internal.Outputs;
 
         public float AdditionalServo1 { get => _internal.AdditionalServo1; set => _internal.AdditionalServo1 = value; }
         public float AdditionalServo2 { get => _internal.AdditionalServo2; set => _internal.AdditionalServo2 = value; }
