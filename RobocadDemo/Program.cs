@@ -52,6 +52,7 @@ static class Program
             robot.MotorSpeed0 = -SPEED;
             robot.MotorSpeed1 = SPEED;
             robot.MotorSpeed2 = 0;
+            
         }
 
         void Halt()

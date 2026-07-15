@@ -3,3 +3,6 @@ obj/
 *.user
 .idea/
 .DS_Store
+*.csproj
+*.vs
+global.json
