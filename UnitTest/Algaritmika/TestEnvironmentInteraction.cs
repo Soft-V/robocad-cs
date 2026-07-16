@@ -2,7 +2,7 @@
 
 namespace UnitTest.Algaritmika
 {
-    [Collection("RobocadHandlerCollection"), TestCaseOrderer(typeof(PriorityOrderer))]
+    [Collection("RobocadAlgaritmikaHandlerCollection"), TestCaseOrderer(typeof(PriorityOrderer))]
     public class TestEnvironmentInteraction
     {
         private readonly RobotHandlerFixture _handler;

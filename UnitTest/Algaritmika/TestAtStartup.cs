@@ -3,11 +3,11 @@ using Xunit;
 using Xunit.v3.Priority;
 namespace UnitTest.Algaritmika
 {
-    [Collection("RobocadHandlerCollection")]
-    public class TestOnStartup
+    [Collection("RobocadAlgaritmikaHandlerCollection")]
+    public class TestAtStartup
     {
         private readonly RobotHandlerFixture _handler;
-        public TestOnStartup(RobotHandlerFixture handler)
+        public TestAtStartup(RobotHandlerFixture handler)
         {
             _handler = handler;
         }

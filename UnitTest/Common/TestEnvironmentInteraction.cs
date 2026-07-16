@@ -1,7 +1,8 @@
 ﻿using Xunit.v3.Priority;
+
 namespace UnitTest.Common
 {
-    [Collection("RobocadHandlerCollection"), TestCaseOrderer(typeof(PriorityOrderer))]
+    [Collection("RobocadCommonHandlerCollection"), TestCaseOrderer(typeof(PriorityOrderer))]
     public class TestEnvironmentInteraction
     {
         private readonly RobotHandlerFixture _handler;
@@ -15,7 +16,7 @@ namespace UnitTest.Common
         {
             await Task.Delay(500);
             SetAxisSpeed(50, 0); // Прямо, но будет скос вправо
-            await Task.Delay(2000);
+            await Task.Delay(7000);
             SetAxisSpeed(0, 50); // По часовой
             await Task.Delay(2000);
             SetAxisSpeed(0, 0);
@@ -49,6 +50,18 @@ namespace UnitTest.Common
             //Assert.Equal(0.0f, _handler.robot.MotorEnc4);
             //Assert.Equal(0.0f, _handler.robot.MotorEnc5);
 
+        }
+
+        [Fact, Priority(4)]
+        public async Task TestServoElevatingArm()
+        {
+            await Task.Delay(500);
+            _handler.robot.SetAngleServo(300, 1);
+            await Task.Delay(1000);
+            _handler.robot.SetAngleServo(150, 1);
+            await Task.Delay(1000);
+            _handler.robot.SetAngleServo(0, 1);
+            await Task.Delay(500);
         }
 
         [Fact(Timeout = 30_000)]

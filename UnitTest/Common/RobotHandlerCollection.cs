@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace UnitTest.Common
+﻿namespace UnitTest.Common
 {
-    [CollectionDefinition("RobocadHandlerCollection")]
+    [CollectionDefinition("RobocadCommonHandlerCollection")]
     public class RobotHandlerCollection : ICollectionFixture<RobotHandlerFixture>
     {
     }

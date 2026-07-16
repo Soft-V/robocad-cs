@@ -1,12 +1,10 @@
-﻿using Xunit.v3.Priority;
-
-namespace UnitTest.Common
+﻿namespace UnitTest.Studica
 {
-    [Collection("RobocadHandlerCollection"), TestCaseOrderer(typeof(PriorityOrderer))]
-    public class TestOnStartup
+    [Collection("RobocadStudicaHandlerCollection")]
+    public class TestAtStartup
     {
         private readonly RobotHandlerFixture _handler;
-        public TestOnStartup(RobotHandlerFixture handler)
+        public TestAtStartup(RobotHandlerFixture handler)
         {
             _handler = handler;
         }
@@ -18,21 +16,13 @@ namespace UnitTest.Common
             Assert.NotEqual(0.0f, _handler.robot.Analog2);
             Assert.NotEqual(0.0f, _handler.robot.Analog3);
             Assert.NotEqual(0.0f, _handler.robot.Analog4);
-            Assert.NotEqual(0.0f, _handler.robot.Analog5);
-            Assert.NotEqual(0.0f, _handler.robot.Analog6);
-            Assert.NotEqual(0.0f, _handler.robot.Analog7);
-            Assert.NotEqual(0.0f, _handler.robot.Analog8);
         }
 
         [Fact]
         public void TestUltrasonicOutputOnRobotStartup()
         {
-            Assert.Multiple(
-                () => Assert.NotEqual(0.0f, _handler.robot.Us1),
-                () => Assert.NotEqual(0.0f, _handler.robot.Us2),
-                () => Assert.NotEqual(0.0f, _handler.robot.Us3),
-                () => Assert.NotEqual(0.0f, _handler.robot.Us4)
-            );
+            Assert.NotEqual(0.0f, _handler.robot.Us1);
+            Assert.NotEqual(0.0f, _handler.robot.Us2);
         }
 
         [Fact]
@@ -48,6 +38,7 @@ namespace UnitTest.Common
             //Assert.Equal(0.0f, _handler.robot.Yaw, 0.000_000_1); // Там 15 знаков после запятой у Yaw, поэтому пусть погрешность будет 1 миллионная градуса. Потом может поменяю
         }
 
+
         [Fact]
         public void TestIfEncodersAreZeroOnStartup()
         {
@@ -55,19 +46,15 @@ namespace UnitTest.Common
             Assert.Equal(0.0f, _handler.robot.MotorEnc1);
             Assert.Equal(0.0f, _handler.robot.MotorEnc2);
             Assert.Equal(0.0f, _handler.robot.MotorEnc3);
-            Assert.Equal(0.0f, _handler.robot.MotorEnc4);
-            Assert.Equal(0.0f, _handler.robot.MotorEnc5);
-            Assert.Equal(0.0f, _handler.robot.MotorEnc6);
-            Assert.Equal(0.0f, _handler.robot.MotorEnc7);
         }
 
         [Fact]
         public void TestIfAllButtonsAreFalseOnRobotStartup()
-        {
-            Assert.False(_handler.robot.Buttons[0]);
-            Assert.False(_handler.robot.Buttons[1]);
-            Assert.False(_handler.robot.Buttons[2]);
-            Assert.False(_handler.robot.Buttons[3]);
+        { 
+            Assert.False(_handler.robot.VmxFlex[0]);
+            Assert.False(_handler.robot.VmxFlex[1]);
+            Assert.False(_handler.robot.VmxFlex[2]);
+            Assert.False(_handler.robot.VmxFlex[3]);
         }
     }
 }

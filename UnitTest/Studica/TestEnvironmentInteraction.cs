@@ -2,7 +2,7 @@
 
 namespace UnitTest.Studica
 {
-    [Collection("RobocadHandlerCollection"), TestCaseOrderer(typeof(PriorityOrderer))]
+    [Collection("RobocadStudicaHandlerCollection"), TestCaseOrderer(typeof(PriorityOrderer))]
     public class TestEnvironmentInteraction
     {
         private readonly RobotHandlerFixture _handler;

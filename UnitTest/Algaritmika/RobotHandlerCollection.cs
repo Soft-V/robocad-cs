@@ -4,7 +4,7 @@ using System.Text;
 
 namespace UnitTest.Algaritmika
 {
-    [CollectionDefinition("RobocadHandlerCollection")]
+    [CollectionDefinition("RobocadAlgaritmikaHandlerCollection")]
     public class RobotHandlerCollection : ICollectionFixture<RobotHandlerFixture>
     {
     }

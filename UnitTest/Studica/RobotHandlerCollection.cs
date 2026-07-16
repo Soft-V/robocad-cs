@@ -1,6 +1,6 @@
 ﻿namespace UnitTest.Studica
 {
-    [CollectionDefinition("RobocadHandlerCollection")]
+    [CollectionDefinition("RobocadStudicaHandlerCollection")]
     public class RobotHandlerCollection : ICollectionFixture<RobotHandlerFixture>
     {
     }
