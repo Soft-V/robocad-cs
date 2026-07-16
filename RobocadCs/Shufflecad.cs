@@ -21,7 +21,7 @@ namespace RobocadCs
         internal readonly object DataLock = new object();
         internal readonly List<ShuffleVariable> Variables = new List<ShuffleVariable>();
         internal readonly List<CameraVariable> CameraVariables = new List<CameraVariable>();
-        internal readonly Dictionary<string, int> joystickData = new Dictionary<string, int>();
+        internal readonly JoystickData _joystickData = new JoystickData();
         internal readonly List<string> PrintArray = new List<string>();
 
         private readonly Robot _robot;
@@ -48,15 +48,40 @@ namespace RobocadCs
             return var;
         }
 
-        public IReadOnlyDictionary<string, int> JoystickValues
+        public JoystickData JoystickData
         {
-            get { lock (DataLock) { return new Dictionary<string, int>(joystickData); } }
+            get { lock (DataLock) { return _joystickData; } }
         }
 
         public void PrintToLog(string message, string messageType = LogInfo, string color = "#808080" )
         {
             lock (DataLock) { PrintArray.Add(messageType + "@" + message + color); }
         }
+    }
+
+    public class JoystickData
+    {
+        public bool BtnA { get; set; }  
+        public bool BtnB { get; set; }  
+        public bool BtnX { get; set; }  
+        public bool BtnY { get; set; }
+        
+        public bool DpudUp { get; set; }  
+        public bool DpudDown { get; set; }  
+        public bool DpudLeft { get; set; }  
+        public bool DpudRight { get; set; }  
+        
+        public byte RightTrigger { get; set; }  
+        public byte LeftTrigger { get; set; }  
+        
+        public int RightStickX { get; set; }  
+        public int RightStickY { get; set; }
+        
+        public int LeftStickY { get; set; }  
+        public int LeftStickX { get; set; }  
+        
+        public bool RightShoulder { get; set; }
+        public bool LeftShoulder { get; set; }
     }
 
     public class ShuffleVariable
@@ -433,7 +458,59 @@ namespace RobocadCs
                 {
                     var parts = item.Split(';');
                     if (parts.Length == 2 && int.TryParse(parts[1], out int val))
-                        _sc.joystickData[parts[0]] = val;
+                    {
+                        switch (parts[0])
+                        {
+                            case "A":
+                                _sc._joystickData.BtnA = val == 1;
+                                break;
+                            case "X":
+                                _sc._joystickData.BtnX = val == 1;
+                                break;
+                            case "Y":
+                                _sc._joystickData.BtnY = val == 1;
+                                break;
+                            case "B":
+                                _sc._joystickData.BtnB = val == 1;
+                                break;
+                            case "RightShoulder":
+                                _sc._joystickData.RightShoulder = val == 1;
+                                break;
+                            case "LeftShoulder":
+                                _sc._joystickData.LeftShoulder = val == 1;
+                                break;
+                            case "DPad_Up":
+                                _sc._joystickData.DpudUp = val == 1;
+                                break;
+                            case "DPad_Down":
+                                _sc._joystickData.DpudDown = val == 1;
+                                break;
+                            case "DPad_Right":
+                                _sc._joystickData.DpudRight = val == 1;
+                                break;
+                            case "DPad_Left":
+                                _sc._joystickData.DpudLeft = val == 1;
+                                break;
+                            case "LeftTrigger":
+                                _sc._joystickData.LeftTrigger = (byte)val;
+                                break;
+                            case "RightTrigger":
+                                _sc._joystickData.RightTrigger = (byte)val;
+                                break;
+                            case "LeftThumbstick_X":
+                                _sc._joystickData.LeftStickX = val;
+                                break;
+                            case "LeftThumbstick_Y":
+                                _sc._joystickData.LeftStickY = val;
+                                break;
+                            case "RightThumbstick_X":
+                                _sc._joystickData.RightStickX = val;
+                                break;
+                            case "RightThumbstick_Y":
+                                _sc._joystickData.RightStickY = val;
+                                break;
+                        }
+                    }
                 }
             }
         }

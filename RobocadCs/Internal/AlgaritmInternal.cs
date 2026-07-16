@@ -37,7 +37,7 @@ namespace RobocadCs.Internal
                 var w = new ByteWriter(112);
                 w.WriteFloat(_ri.SpeedMotor0); w.WriteFloat(_ri.SpeedMotor1);
                 w.WriteFloat(_ri.SpeedMotor2); w.WriteFloat(_ri.SpeedMotor3);
-                for (int i = 0; i < 8; i++) w.WriteFloat(_ri.ServoAngles[i]);
+                for (int i = 0; i < 8; i++) w.WriteFloat(_ri.ServoAngles[i] * 0.0011111f + 0.05f);
                 w.WriteFloat(_ri.AdditionalServo1); w.WriteFloat(_ri.AdditionalServo2);
                 w.WriteFloat(_ri.StepMotor1Steps); w.WriteFloat(_ri.StepMotor2Steps);
                 w.WriteFloat(_ri.StepMotor1StepsPerS); w.WriteFloat(_ri.StepMotor2StepsPerS);
