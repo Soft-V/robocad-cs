@@ -507,7 +507,7 @@ namespace RobocadCs
                                 _sc._joystickData.RightStickX = val;
                                 break;
                             case "RightThumbstick_Y":
-                                _sc._joystickData.LeftStickY = val;
+                                _sc._joystickData.RightStickY = val;
                                 break;
                         }
                     }
