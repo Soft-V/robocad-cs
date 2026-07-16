@@ -20,7 +20,7 @@ static class Program
 
         dash.PrintToLog($"Test log");
 
-        var vYaw = dash.AddVar(new ShuffleVariable("yaw", ShuffleVariable.FloatType, ShuffleVariable.InVar ));
+        var vYaw = dash.AddVar(new ShuffleVariable("yaw", ShuffleVariable.FloatType, ShuffleVariable.InVar));
         var vYawG = dash.AddVar(new ShuffleVariable("yaw_g", ShuffleVariable.ChartType, ShuffleVariable.OutVar));
         var vUs1 = dash.AddVar(new ShuffleVariable("us_1", ShuffleVariable.FloatType, ShuffleVariable.OutVar));
         var vUs2 = dash.AddVar(new ShuffleVariable("us_2", ShuffleVariable.FloatType, ShuffleVariable.OutVar));
@@ -52,7 +52,7 @@ static class Program
             robot.MotorSpeed0 = -SPEED;
             robot.MotorSpeed1 = SPEED;
             robot.MotorSpeed2 = 0;
-            
+
         }
 
         void Halt()
@@ -81,12 +81,12 @@ static class Program
             vPower.SetFloat(robot.Power);
             vDrive.SetString(drive);
             analog1.SetFloat(robot.Analog1);
-            
+
             float[] lidar = robot.LidarData;
             if (lidar.Length > 0) vLidar.SetRadar(lidar);
 
             robot.SetAngleServo(vServo.GetFloat(), 1);
-            
+
             const int OUT_COUNT = 2;
             int activeOut = (int)((frame / 20) % OUT_COUNT);
             for (int i = 0; i < OUT_COUNT; i++)

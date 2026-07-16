@@ -3,60 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Alga\\Desktop\\robocad-cs\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{07247553-93AE-41FF-B6AE-D003C65638D8}|RobocadCs\\RobocadCs.csproj|c:\\users\\alga\\desktop\\robocad-cs\\robocadcs\\internal\\robotinternal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{07247553-93AE-41FF-B6AE-D003C65638D8}|RobocadCs\\RobocadCs.csproj|solutionrelative:robocadcs\\internal\\robotinternal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{07247553-93AE-41FF-B6AE-D003C65638D8}|RobocadCs\\RobocadCs.csproj|c:\\users\\alga\\desktop\\robocad-cs\\robocadcs\\robotalgaritm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{07247553-93AE-41FF-B6AE-D003C65638D8}|RobocadCs\\RobocadCs.csproj|solutionrelative:robocadcs\\robotalgaritm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|c:\\users\\alga\\desktop\\robocad-cs\\unittest\\common\\testatstartup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|solutionrelative:unittest\\common\\testatstartup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|c:\\users\\alga\\desktop\\robocad-cs\\unittest\\common\\testenvironmentinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|solutionrelative:unittest\\common\\testenvironmentinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|c:\\users\\alga\\desktop\\robocad-cs\\unittest\\studica\\testatstartup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|solutionrelative:unittest\\studica\\testatstartup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|c:\\users\\alga\\desktop\\robocad-cs\\unittest\\studica\\testenvironmentinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|solutionrelative:unittest\\studica\\testenvironmentinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|c:\\users\\alga\\desktop\\robocad-cs\\unittest\\studica\\robothandlerfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|solutionrelative:unittest\\studica\\robothandlerfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|c:\\users\\alga\\desktop\\robocad-cs\\unittest\\studica\\robothandlercollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|solutionrelative:unittest\\studica\\robothandlercollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|c:\\users\\alga\\desktop\\robocad-cs\\unittest\\algaritmika\\testatstartup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|solutionrelative:unittest\\algaritmika\\testatstartup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1D64A8B6-42E9-4D0C-9416-1D0991C20806}|RobocadDemo\\RobocadDemo.csproj|c:\\users\\alga\\desktop\\robocad-cs\\robocaddemo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D64A8B6-42E9-4D0C-9416-1D0991C20806}|RobocadDemo\\RobocadDemo.csproj|solutionrelative:robocaddemo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|c:\\users\\alga\\desktop\\robocad-cs\\unittest\\algaritmika\\testenvironmentinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|solutionrelative:unittest\\algaritmika\\testenvironmentinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|c:\\users\\alga\\desktop\\robocad-cs\\unittest\\algaritmika\\robothandlerfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|solutionrelative:unittest\\algaritmika\\robothandlerfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{07247553-93AE-41FF-B6AE-D003C65638D8}|RobocadCs\\RobocadCs.csproj|c:\\users\\alga\\desktop\\robocad-cs\\robocadcs\\robotvmxtitan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07247553-93AE-41FF-B6AE-D003C65638D8}|RobocadCs\\RobocadCs.csproj|solutionrelative:robocadcs\\robotvmxtitan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|c:\\users\\alga\\desktop\\robocad-cs\\unittest\\algaritmika\\robothandlercollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|solutionrelative:unittest\\algaritmika\\robothandlercollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|c:\\users\\alga\\desktop\\robocad-cs\\unittest\\common\\robothandlerfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|solutionrelative:unittest\\common\\robothandlerfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|c:\\users\\alga\\desktop\\robocad-cs\\unittest\\common\\robothandlercollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|solutionrelative:unittest\\common\\robothandlercollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{07247553-93AE-41FF-B6AE-D003C65638D8}|RobocadCs\\RobocadCs.csproj|c:\\users\\alga\\desktop\\robocad-cs\\robocadcs\\robotalgaritm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07247553-93AE-41FF-B6AE-D003C65638D8}|RobocadCs\\RobocadCs.csproj|solutionrelative:robocadcs\\robotalgaritm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,190 +26,57 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "RobotHandlerCollection.cs",
-              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Algaritmika\\RobotHandlerCollection.cs",
-              "RelativeDocumentMoniker": "UnitTest\\Algaritmika\\RobotHandlerCollection.cs",
-              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Algaritmika\\RobotHandlerCollection.cs",
-              "RelativeToolTip": "UnitTest\\Algaritmika\\RobotHandlerCollection.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA+AAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "RobotVMXTitan.cs",
+              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadCs\\RobotVMXTitan.cs",
+              "RelativeDocumentMoniker": "RobocadCs\\RobotVMXTitan.cs",
+              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadCs\\RobotVMXTitan.cs",
+              "RelativeToolTip": "RobocadCs\\RobotVMXTitan.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAcwC0AAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T12:01:32.187Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "RobotInternal.cs",
-              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadCs\\Internal\\RobotInternal.cs",
-              "RelativeDocumentMoniker": "RobocadCs\\Internal\\RobotInternal.cs",
-              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadCs\\Internal\\RobotInternal.cs",
-              "RelativeToolTip": "RobocadCs\\Internal\\RobotInternal.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGQAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-16T05:39:58.027Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-16T07:23:40.366Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "RobotAlgaritm.cs",
-              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadCs\\RobotAlgaritm.cs",
-              "RelativeDocumentMoniker": "RobocadCs\\RobotAlgaritm.cs",
-              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadCs\\RobotAlgaritm.cs",
-              "RelativeToolTip": "RobocadCs\\RobotAlgaritm.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFYAAABlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-16T05:30:17.628Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TestAtStartup.cs",
-              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Studica\\TestAtStartup.cs",
-              "RelativeDocumentMoniker": "UnitTest\\Studica\\TestAtStartup.cs",
-              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Studica\\TestAtStartup.cs",
-              "RelativeToolTip": "UnitTest\\Studica\\TestAtStartup.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAIwDIAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T11:13:26.951Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TestAtStartup.cs",
-              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Common\\TestAtStartup.cs",
-              "RelativeDocumentMoniker": "UnitTest\\Common\\TestAtStartup.cs",
-              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Common\\TestAtStartup.cs",
-              "RelativeToolTip": "UnitTest\\Common\\TestAtStartup.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T12:54:26.058Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TestEnvironmentInteraction.cs",
-              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Common\\TestEnvironmentInteraction.cs",
-              "RelativeDocumentMoniker": "UnitTest\\Common\\TestEnvironmentInteraction.cs",
-              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Common\\TestEnvironmentInteraction.cs",
-              "RelativeToolTip": "UnitTest\\Common\\TestEnvironmentInteraction.cs",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAmwDkAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T12:54:54.091Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TestEnvironmentInteraction.cs",
-              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Studica\\TestEnvironmentInteraction.cs",
-              "RelativeDocumentMoniker": "UnitTest\\Studica\\TestEnvironmentInteraction.cs",
-              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Studica\\TestEnvironmentInteraction.cs",
-              "RelativeToolTip": "UnitTest\\Studica\\TestEnvironmentInteraction.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T11:15:10.266Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "RobotHandlerFixture.cs",
-              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Studica\\RobotHandlerFixture.cs",
-              "RelativeDocumentMoniker": "UnitTest\\Studica\\RobotHandlerFixture.cs",
-              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Studica\\RobotHandlerFixture.cs",
-              "RelativeToolTip": "UnitTest\\Studica\\RobotHandlerFixture.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T11:12:44.543Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "RobotHandlerCollection.cs",
-              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Studica\\RobotHandlerCollection.cs",
-              "RelativeDocumentMoniker": "UnitTest\\Studica\\RobotHandlerCollection.cs",
-              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Studica\\RobotHandlerCollection.cs",
-              "RelativeToolTip": "UnitTest\\Studica\\RobotHandlerCollection.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T11:39:15.338Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "TestAtStartup.cs",
-              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Algaritmika\\TestAtStartup.cs",
-              "RelativeDocumentMoniker": "UnitTest\\Algaritmika\\TestAtStartup.cs",
-              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Algaritmika\\TestAtStartup.cs",
-              "RelativeToolTip": "UnitTest\\Algaritmika\\TestAtStartup.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T12:01:45.216Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
               "Title": "TestEnvironmentInteraction.cs",
               "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Algaritmika\\TestEnvironmentInteraction.cs",
               "RelativeDocumentMoniker": "UnitTest\\Algaritmika\\TestEnvironmentInteraction.cs",
               "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Algaritmika\\TestEnvironmentInteraction.cs",
               "RelativeToolTip": "UnitTest\\Algaritmika\\TestEnvironmentInteraction.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAAAwwD4AAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T13:11:47.979Z",
+              "WhenOpened": "2026-07-16T07:22:58.852Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "RobotHandlerFixture.cs",
-              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Algaritmika\\RobotHandlerFixture.cs",
-              "RelativeDocumentMoniker": "UnitTest\\Algaritmika\\RobotHandlerFixture.cs",
-              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Algaritmika\\RobotHandlerFixture.cs",
-              "RelativeToolTip": "UnitTest\\Algaritmika\\RobotHandlerFixture.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadDemo\\Program.cs",
+              "RelativeDocumentMoniker": "RobocadDemo\\Program.cs",
+              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadDemo\\Program.cs",
+              "RelativeToolTip": "RobocadDemo\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T13:14:32.603Z",
+              "WhenOpened": "2026-07-16T07:13:41.28Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "RobotHandlerFixture.cs",
-              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Common\\RobotHandlerFixture.cs",
-              "RelativeDocumentMoniker": "UnitTest\\Common\\RobotHandlerFixture.cs",
-              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Common\\RobotHandlerFixture.cs",
-              "RelativeToolTip": "UnitTest\\Common\\RobotHandlerFixture.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAeAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "RobotAlgaritm.cs",
+              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadCs\\RobotAlgaritm.cs",
+              "RelativeDocumentMoniker": "RobocadCs\\RobotAlgaritm.cs",
+              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadCs\\RobotAlgaritm.cs",
+              "RelativeToolTip": "RobocadCs\\RobotAlgaritm.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAIwCMAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T12:54:07.208Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "RobotHandlerCollection.cs",
-              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Common\\RobotHandlerCollection.cs",
-              "RelativeDocumentMoniker": "UnitTest\\Common\\RobotHandlerCollection.cs",
-              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Common\\RobotHandlerCollection.cs",
-              "RelativeToolTip": "UnitTest\\Common\\RobotHandlerCollection.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-15T12:53:52.642Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-07-16T06:16:04.741Z"
             }
           ]
         }
