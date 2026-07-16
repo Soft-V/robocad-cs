@@ -30,6 +30,15 @@ namespace RobocadCs.Common
             base.Dispose();
         }
 
+        private int lastMotorEnc0 = 0;
+        private int lastMotorEnc1 = 0;
+        private int lastMotorEnc2 = 0;
+        private int lastMotorEnc3 = 0;
+        private int lastMotorEnc4 = 0;
+        private int lastMotorEnc5 = 0;
+        private int lastMotorEnc6 = 0;
+        private int lastMotorEnc7 = 0;
+
         public float MotorSpeed0 { get => _internal.SpeedMotor0; set => _internal.SpeedMotor0 = value; }
         public float MotorSpeed1 { get => _internal.SpeedMotor1; set => _internal.SpeedMotor1 = value; }
         public float MotorSpeed2 { get => _internal.SpeedMotor2; set => _internal.SpeedMotor2 = value; }
@@ -39,14 +48,23 @@ namespace RobocadCs.Common
         public float MotorSpeed6 { get => _internal.SpeedMotor6; set => _internal.SpeedMotor6 = value; }
         public float MotorSpeed7 { get => _internal.SpeedMotor7; set => _internal.SpeedMotor7 = value; }
 
-        public int MotorEnc0 => _internal.EncMotor0;
-        public int MotorEnc1 => _internal.EncMotor1;
-        public int MotorEnc2 => _internal.EncMotor2;
-        public int MotorEnc3 => _internal.EncMotor3;
-        public int MotorEnc4 => _internal.EncMotor4;
-        public int MotorEnc5 => _internal.EncMotor5;
-        public int MotorEnc6 => _internal.EncMotor6;
-        public int MotorEnc7 => _internal.EncMotor7;
+        public int MotorEnc0 => _internal.EncMotor0 - lastMotorEnc0;
+        public int MotorEnc1 => _internal.EncMotor1 - lastMotorEnc1;
+        public int MotorEnc2 => _internal.EncMotor2 - lastMotorEnc2;
+        public int MotorEnc3 => _internal.EncMotor3 - lastMotorEnc3;
+        public int MotorEnc4 => _internal.EncMotor4 - lastMotorEnc4;
+        public int MotorEnc5 => _internal.EncMotor5 - lastMotorEnc5;
+        public int MotorEnc6 => _internal.EncMotor6 - lastMotorEnc6;
+        public int MotorEnc7 => _internal.EncMotor7 - lastMotorEnc7;
+
+        public void ResetMotorEnc0() { lastMotorEnc0 = _internal.EncMotor0; }
+        public void ResetMotorEnc1() { lastMotorEnc1 = _internal.EncMotor1; }
+        public void ResetMotorEnc2() { lastMotorEnc2 = _internal.EncMotor2; }
+        public void ResetMotorEnc3() { lastMotorEnc3 = _internal.EncMotor3; }
+        public void ResetMotorEnc4() { lastMotorEnc4 = _internal.EncMotor4; }
+        public void ResetMotorEnc5() { lastMotorEnc5 = _internal.EncMotor5; }
+        public void ResetMotorEnc6() { lastMotorEnc6 = _internal.EncMotor6; }
+        public void ResetMotorEnc7() { lastMotorEnc7 = _internal.EncMotor7; }
 
         public float Yaw => _internal.Yaw;
         public float Us1 => _internal.Ultrasound1;
