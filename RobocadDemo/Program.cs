@@ -7,8 +7,20 @@ using RobocadCs.Internal.Common;
 
 static class Program
 {
-    const float SPEED = 30f;
-    const int LEG_TICKS = 60;
+    const float DEADZONE = 10f;
+    const int TRIGGER_THRESHOLD = 120;
+
+    static float StickToSpeed(int stick) => stick / 800f;
+
+    static float TrigToSpeed(byte leftTrigger, byte rightTrigger)
+    {
+        float sp = 0;
+        if (leftTrigger > TRIGGER_THRESHOLD) sp += 40;
+        if (rightTrigger > TRIGGER_THRESHOLD) sp -= 40;
+        return sp;
+    }
+
+    static float ApplyDeadzone(float speed) => Math.Abs(speed) > DEADZONE ? speed : 0f;
 
     static int Main(string[] args)
     {
@@ -17,6 +29,8 @@ static class Program
         var robot = new RobotAlgaritm(false);
         var dash = new Shufflecad(robot);
         Thread.Sleep(100);
+
+        robot.SetPidSettings(true, 0.14f, 0.1f, 0);
 
         dash.PrintToLog($"Test log");
 
@@ -32,27 +46,33 @@ static class Program
         var analog1 = dash.AddVar(new ShuffleVariable("analog1", ShuffleVariable.FloatType, ShuffleVariable.OutVar));
         var vOutputs = dash.AddVar(new ShuffleVariable("outputs", ShuffleVariable.StringType, ShuffleVariable.OutVar));
         var vServo = dash.AddVar(new ShuffleVariable("servo_1", ShuffleVariable.FloatType, ShuffleVariable.InVar));
+        var vJoyRaw = dash.AddVar(new ShuffleVariable("joy_raw", ShuffleVariable.StringType, ShuffleVariable.OutVar));
         var cameraWidth = dash.AddVar(new ShuffleVariable("cameraWidth", ShuffleVariable.FloatType, ShuffleVariable.InVar));
 
         var cam = dash.AddVar(new CameraVariable("camera"));
 
-        Console.WriteLine("RobocadDemo запущен (симулятор): робот ездит вперёд-назад,");
-        Console.WriteLine("датчики и камера уходят в Shufflecad (порты 63253–63259).");
+        Console.WriteLine("RobocadDemo запущен (симулятор): робот управляется геймпадом,");
+        Console.WriteLine("левый стик — движение, триггеры — поворот, правый стик — 4-й мотор,");
+        Console.WriteLine("A — серво 1, B — серво 2.");
+        Console.WriteLine("Датчики и камера уходят в Shufflecad (порты 63253–63259).");
         Console.WriteLine(runSeconds > 0 ? $"Автоостановка через {runSeconds} c." : "Ctrl+C — выход.");
 
-        void Forward()
+        // Omni-kinematics: left stick drives X/Y, triggers add rotation.
+        void Drive()
         {
-            robot.MotorSpeed0 = SPEED;
-            robot.MotorSpeed1 = -SPEED;
-            robot.MotorSpeed2 = 0;
-        }
+            var joy = dash.JoystickData;
 
-        void Backward()
-        {
-            robot.MotorSpeed0 = -SPEED;
-            robot.MotorSpeed1 = SPEED;
-            robot.MotorSpeed2 = 0;
+            float x = StickToSpeed(joy.LeftStickX);
+            float y = StickToSpeed(joy.LeftStickY);
+            float r = TrigToSpeed(joy.LeftTrigger, joy.RightTrigger);
 
+            robot.MotorSpeed3 = ApplyDeadzone(y - x / 2 + r);
+            robot.MotorSpeed2 = ApplyDeadzone(-y - x / 2 + r);
+            robot.MotorSpeed0 = ApplyDeadzone(x + r);
+            robot.MotorSpeed1 = ApplyDeadzone(StickToSpeed(joy.RightStickY) / 4);
+
+            robot.SetAngleServo(joy.BtnA ? 180 : 0, 1);
+            robot.SetAngleServo(joy.BtnB ? 180 : 0, 2);
         }
 
         void Halt()
@@ -60,6 +80,7 @@ static class Program
             robot.MotorSpeed0 = 0;
             robot.MotorSpeed1 = 0;
             robot.MotorSpeed2 = 0;
+            robot.MotorSpeed3 = 0;
         }
 
         long frame = 0;
@@ -67,10 +88,14 @@ static class Program
 
         while (runSeconds <= 0 || (DateTime.UtcNow - startUtc).TotalSeconds < runSeconds)
         {
-            bool goingForward = (frame / LEG_TICKS) % 2 == 0;
-            if (goingForward) Forward();
-            else Backward();
-            string drive = goingForward ? "FORWARD" : "BACKWARD";
+            Drive();
+            string drive = $"{robot.MotorSpeed0:0.#}/{robot.MotorSpeed1:0.#}/{robot.MotorSpeed2:0.#}/{robot.MotorSpeed3:0.#}";
+
+            var j = dash.JoystickData;
+            string joyRaw = $"LX={j.LeftStickX} LY={j.LeftStickY} RX={j.RightStickX} RY={j.RightStickY} " +
+                            $"LT={j.LeftTrigger} RT={j.RightTrigger} A={j.BtnA} B={j.BtnB}";
+            vJoyRaw.SetString(joyRaw);
+            if (frame % 100 == 0) Console.WriteLine($"[joy] {joyRaw}  ->  motors {drive}");
 
             vYaw.SetFloat(robot.Yaw);
             vYawG.SetFloat(robot.Yaw);
@@ -85,8 +110,9 @@ static class Program
             float[] lidar = robot.LidarData;
             if (lidar.Length > 0) vLidar.SetRadar(lidar);
 
-            robot.SetAngleServo(vServo.GetFloat(), 1);
-
+            // Port 8: servos 1 and 2 are driven by the gamepad in Drive().
+            robot.SetAngleServo(vServo.GetFloat(), 8);
+            
             const int OUT_COUNT = 2;
             int activeOut = (int)((frame / 20) % OUT_COUNT);
             for (int i = 0; i < OUT_COUNT; i++)
@@ -112,7 +138,7 @@ static class Program
             }
 
             frame++;
-            Thread.Sleep(50);
+            Thread.Sleep(5);
         }
 
         Halt();
