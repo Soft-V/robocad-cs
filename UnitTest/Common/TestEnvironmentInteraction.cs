@@ -36,32 +36,43 @@ namespace UnitTest.Common
         [Fact, Priority(3)]
         public void TestIfBaseEncodersResetWorks()
         {
-            // Потом раскомменчу, когда ресет будет реализован. Пока что автоматически проходится
-            //_handler.robot.ResetMotorEnc0();
-            //_handler.robot.ResetMotorEnc1();
-            //_handler.robot.ResetMotorEnc2();
-            //_handler.robot.ResetMotorEnc3();
-            //_handler.robot.ResetMotorEnc4();
-            //_handler.robot.ResetMotorEnc5();
-            //Assert.Equal(0.0f, _handler.robot.MotorEnc0);
-            //Assert.Equal(0.0f, _handler.robot.MotorEnc1);
-            //Assert.Equal(0.0f, _handler.robot.MotorEnc2);
-            //Assert.Equal(0.0f, _handler.robot.MotorEnc3);
-            //Assert.Equal(0.0f, _handler.robot.MotorEnc4);
-            //Assert.Equal(0.0f, _handler.robot.MotorEnc5);
+            _handler.robot.ResetMotorEnc0();
+            _handler.robot.ResetMotorEnc1();
+            _handler.robot.ResetMotorEnc2();
+            _handler.robot.ResetMotorEnc3();
+            _handler.robot.ResetMotorEnc4();
+            _handler.robot.ResetMotorEnc5();
+            Assert.Equal(0.0f, _handler.robot.MotorEnc0);
+            Assert.Equal(0.0f, _handler.robot.MotorEnc1);
+            Assert.Equal(0.0f, _handler.robot.MotorEnc2);
+            Assert.Equal(0.0f, _handler.robot.MotorEnc3);
+            Assert.Equal(0.0f, _handler.robot.MotorEnc4);
+            Assert.Equal(0.0f, _handler.robot.MotorEnc5);
 
         }
 
         [Fact, Priority(4)]
-        public async Task TestServoElevatingArm()
+        public async Task TestElevatingArmServoInteraction()
         {
             await Task.Delay(500);
             _handler.robot.SetAngleServo(300, 1);
-            await Task.Delay(1000);
+            await Task.Delay(4000);
             _handler.robot.SetAngleServo(150, 1);
-            await Task.Delay(1000);
+            await Task.Delay(3000);
             _handler.robot.SetAngleServo(0, 1);
+            await Task.Delay(3000);
+        }
+
+        [Fact]
+        public async Task TestGripperServoInteraction()
+        {
             await Task.Delay(500);
+            _handler.robot.SetAngleServo(300, 2);
+            await Task.Delay(2500);
+            _handler.robot.SetAngleServo(150, 2);
+            await Task.Delay(2500);
+            _handler.robot.SetAngleServo(0, 2);
+            await Task.Delay(2500);
         }
 
         [Fact(Timeout = 30_000)]

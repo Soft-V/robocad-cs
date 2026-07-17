@@ -35,13 +35,12 @@ namespace UnitTest.Studica
         [Fact, Priority(3)]
         public void TestIfBaseEncodersResetWorks()
         {
-            // Потом раскомменчу, когда ресет будет реализован. Пока что автоматически проходится
-            //_handler.robot.ResetMotorEnc0();
-            //_handler.robot.ResetMotorEnc1();
-            //_handler.robot.ResetMotorEnc2();
-            //Assert.Equal(0.0f, _handler.robot.MotorEnc0);
-            //Assert.Equal(0.0f, _handler.robot.MotorEnc1);
-            //Assert.Equal(0.0f, _handler.robot.MotorEnc2);
+            _handler.robot.ResetMotorEnc0();
+            _handler.robot.ResetMotorEnc1();
+            _handler.robot.ResetMotorEnc2();
+            Assert.Equal(0.0f, _handler.robot.MotorEnc0);
+            Assert.Equal(0.0f, _handler.robot.MotorEnc1);
+            Assert.Equal(0.0f, _handler.robot.MotorEnc2);
 
         }
 
@@ -69,6 +68,42 @@ namespace UnitTest.Studica
             Assert.True(startButtonPressedOnce);
             Assert.True(resetButtonPressedOnce);
             Assert.True(stopButtonPressedOnce);
+        }
+
+        [Fact]
+        public async Task TestElevatorServoInteraction()
+        {
+            await Task.Delay(500);
+            _handler.robot.SetAngleHcdio(300, 3);
+            await Task.Delay(2500);
+            _handler.robot.SetAngleHcdio(150, 3);
+            await Task.Delay(1500);
+            _handler.robot.SetAngleHcdio(0, 3);
+            await Task.Delay(1500);
+        }
+
+        [Fact]
+        public async Task TestGripperServoInteraction()
+        {
+            await Task.Delay(500);
+            _handler.robot.SetAngleHcdio(300, 4);
+            await Task.Delay(2500);
+            _handler.robot.SetAngleHcdio(150, 4);
+            await Task.Delay(1500);
+            _handler.robot.SetAngleHcdio(0, 4);
+            await Task.Delay(1500);
+        }
+
+        [Fact]
+        public async Task TestIfLEDsAreWorkingAndAttachedCorrectly()
+        {
+            await Task.Delay(500);
+            _handler.robot.SetBoolHcdio(true, 1); // Зеленый
+            _handler.robot.SetBoolHcdio(false, 2);
+            await Task.Delay(1000);
+            _handler.robot.SetBoolHcdio(true, 2); // Красный
+            _handler.robot.SetBoolHcdio(false, 1);
+            await Task.Delay(1000);
         }
 
         private void SetAxisSpeed(float x, float y, float z)

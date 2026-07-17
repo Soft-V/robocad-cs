@@ -3,81 +3,126 @@
   "WorkspaceRootPath": "C:\\Users\\Alga\\Desktop\\robocad-cs\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|c:\\users\\alga\\desktop\\robocad-cs\\unittest\\common\\testenvironmentinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|solutionrelative:unittest\\common\\testenvironmentinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|c:\\users\\alga\\desktop\\robocad-cs\\unittest\\studica\\testenvironmentinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|solutionrelative:unittest\\studica\\testenvironmentinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|c:\\users\\alga\\desktop\\robocad-cs\\unittest\\algaritmika\\testenvironmentinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|solutionrelative:unittest\\algaritmika\\testenvironmentinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|c:\\users\\alga\\desktop\\robocad-cs\\unittest\\algaritmika\\testatstartup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3398497F-347D-4C7D-B10A-F7A55A480869}|UnitTest\\UnitTest.csproj|solutionrelative:unittest\\algaritmika\\testatstartup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07247553-93AE-41FF-B6AE-D003C65638D8}|RobocadCs\\RobocadCs.csproj|c:\\users\\alga\\desktop\\robocad-cs\\robocadcs\\commonrobot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07247553-93AE-41FF-B6AE-D003C65638D8}|RobocadCs\\RobocadCs.csproj|solutionrelative:robocadcs\\commonrobot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{07247553-93AE-41FF-B6AE-D003C65638D8}|RobocadCs\\RobocadCs.csproj|c:\\users\\alga\\desktop\\robocad-cs\\robocadcs\\robotvmxtitan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{07247553-93AE-41FF-B6AE-D003C65638D8}|RobocadCs\\RobocadCs.csproj|solutionrelative:robocadcs\\robotvmxtitan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{07247553-93AE-41FF-B6AE-D003C65638D8}|RobocadCs\\RobocadCs.csproj|c:\\users\\alga\\desktop\\robocad-cs\\robocadcs\\robotalgaritm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{07247553-93AE-41FF-B6AE-D003C65638D8}|RobocadCs\\RobocadCs.csproj|solutionrelative:robocadcs\\robotalgaritm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1D64A8B6-42E9-4D0C-9416-1D0991C20806}|RobocadDemo\\RobocadDemo.csproj|c:\\users\\alga\\desktop\\robocad-cs\\robocaddemo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1D64A8B6-42E9-4D0C-9416-1D0991C20806}|RobocadDemo\\RobocadDemo.csproj|solutionrelative:robocaddemo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
     {
-      "Orientation": 0,
+      "Orientation": 1,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "DockedHeight": 387,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RobotVMXTitan.cs",
-              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadCs\\RobotVMXTitan.cs",
-              "RelativeDocumentMoniker": "RobocadCs\\RobotVMXTitan.cs",
-              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadCs\\RobotVMXTitan.cs",
-              "RelativeToolTip": "RobocadCs\\RobotVMXTitan.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAcwC0AAABEAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "TestAtStartup.cs",
+              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Algaritmika\\TestAtStartup.cs",
+              "RelativeDocumentMoniker": "UnitTest\\Algaritmika\\TestAtStartup.cs",
+              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Algaritmika\\TestAtStartup.cs",
+              "RelativeToolTip": "UnitTest\\Algaritmika\\TestAtStartup.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAA3wAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-16T07:23:40.366Z",
+              "WhenOpened": "2026-07-17T07:31:03.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TestEnvironmentInteraction.cs",
+              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Algaritmika\\TestEnvironmentInteraction.cs",
+              "RelativeDocumentMoniker": "UnitTest\\Algaritmika\\TestEnvironmentInteraction.cs",
+              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Algaritmika\\TestEnvironmentInteraction.cs",
+              "RelativeToolTip": "UnitTest\\Algaritmika\\TestEnvironmentInteraction.cs",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAgwFMAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-17T07:11:29.052Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "TestEnvironmentInteraction.cs",
-              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Algaritmika\\TestEnvironmentInteraction.cs",
-              "RelativeDocumentMoniker": "UnitTest\\Algaritmika\\TestEnvironmentInteraction.cs",
-              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Algaritmika\\TestEnvironmentInteraction.cs",
-              "RelativeToolTip": "UnitTest\\Algaritmika\\TestEnvironmentInteraction.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAIwD4AAAAtAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Common\\TestEnvironmentInteraction.cs",
+              "RelativeDocumentMoniker": "UnitTest\\Common\\TestEnvironmentInteraction.cs",
+              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Common\\TestEnvironmentInteraction.cs*",
+              "RelativeToolTip": "UnitTest\\Common\\TestEnvironmentInteraction.cs*",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAcwEIAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-16T07:22:58.852Z",
+              "WhenOpened": "2026-07-17T07:10:20.051Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadDemo\\Program.cs",
-              "RelativeDocumentMoniker": "RobocadDemo\\Program.cs",
-              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadDemo\\Program.cs",
-              "RelativeToolTip": "RobocadDemo\\Program.cs",
-              "ViewState": "AgIAACoAAAAA5UF6iuAuwBQAAAAlAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "TestEnvironmentInteraction.cs",
+              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Studica\\TestEnvironmentInteraction.cs",
+              "RelativeDocumentMoniker": "UnitTest\\Studica\\TestEnvironmentInteraction.cs",
+              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\UnitTest\\Studica\\TestEnvironmentInteraction.cs",
+              "RelativeToolTip": "UnitTest\\Studica\\TestEnvironmentInteraction.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAowF4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-16T07:13:41.28Z"
+              "WhenOpened": "2026-07-17T07:05:00.653Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RobotAlgaritm.cs",
-              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadCs\\RobotAlgaritm.cs",
-              "RelativeDocumentMoniker": "RobocadCs\\RobotAlgaritm.cs",
-              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadCs\\RobotAlgaritm.cs",
-              "RelativeToolTip": "RobocadCs\\RobotAlgaritm.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAIwCMAAAAmAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "CommonRobot.cs",
+              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadCs\\CommonRobot.cs",
+              "RelativeDocumentMoniker": "RobocadCs\\CommonRobot.cs",
+              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadCs\\CommonRobot.cs",
+              "RelativeToolTip": "RobocadCs\\CommonRobot.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAADwv0EAAABNAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-07-16T06:16:04.741Z",
+              "WhenOpened": "2026-07-16T14:39:08.378Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RobotVMXTitan.cs",
+              "DocumentMoniker": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadCs\\RobotVMXTitan.cs",
+              "RelativeDocumentMoniker": "RobocadCs\\RobotVMXTitan.cs",
+              "ToolTip": "C:\\Users\\Alga\\Desktop\\robocad-cs\\RobocadCs\\RobotVMXTitan.cs",
+              "RelativeToolTip": "RobocadCs\\RobotVMXTitan.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAA9wCMAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-16T07:23:40.366Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedHeight": 13,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             }
           ]
         }

@@ -34,13 +34,12 @@ namespace UnitTest.Algaritmika
         [Fact, Priority(3)]
         public void TestIfBaseEncodersResetWorks()
         {
-            // Потом раскомменчу, когда ресет будет реализован. Пока что автоматически проходится
-            //_handler.robot.ResetMotorEnc0();
-            //_handler.robot.ResetMotorEnc1();
-            //_handler.robot.ResetMotorEnc2();
-            //Assert.Equal(0.0f, _handler.robot.MotorEnc0);
-            //Assert.Equal(0.0f, _handler.robot.MotorEnc1);
-            //Assert.Equal(0.0f, _handler.robot.MotorEnc2);
+            _handler.robot.ResetMotorEnc0();
+            _handler.robot.ResetMotorEnc1();
+            _handler.robot.ResetMotorEnc2();
+            Assert.Equal(0.0f, _handler.robot.MotorEnc0);
+            Assert.Equal(0.0f, _handler.robot.MotorEnc1);
+            Assert.Equal(0.0f, _handler.robot.MotorEnc2);
                 
         }
 
@@ -68,6 +67,42 @@ namespace UnitTest.Algaritmika
             Assert.True(startButtonPressedOnce);
             Assert.True(resetButtonPressedOnce);
             Assert.True(stopButtonPressedOnce);  
+        }
+
+        [Fact]
+        public async Task TestElevatorServoInteraction()
+        {
+            await Task.Delay(500);
+            _handler.robot.SetAngleServo(180, 1);
+            await Task.Delay(2000);
+            _handler.robot.SetAngleServo(90, 1);
+            await Task.Delay(1500);
+            _handler.robot.SetAngleServo(0, 1);
+            await Task.Delay(1500);
+        }
+
+        [Fact]
+        public async Task TestGripperServoInteraction()
+        {
+            await Task.Delay(500);
+            _handler.robot.SetAngleServo(180, 2);
+            await Task.Delay(1500);
+            _handler.robot.SetAngleServo(90, 2);
+            await Task.Delay(1500);
+            _handler.robot.SetAngleServo(0, 2);
+            await Task.Delay(1500);
+        }
+
+        [Fact]
+        public async Task TestIfLEDsAreWorkingAndAttachedCorrectly()
+        {
+            await Task.Delay(500);
+            _handler.robot.Outputs[0] = true; // Зеленый
+            _handler.robot.Outputs[1] = false; 
+            await Task.Delay(1000);
+            _handler.robot.Outputs[1] = true; // Красный
+            _handler.robot.Outputs[0] = false;
+            await Task.Delay(1000);
         }
 
         private void SetAxisSpeed(float x, float y, float z)
