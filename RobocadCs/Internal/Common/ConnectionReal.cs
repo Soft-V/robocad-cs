@@ -12,7 +12,7 @@ namespace RobocadCs.Internal.Common
         private readonly RobotConfiguration _conf;
         private readonly LibHolder _lib;
         private VideoCapture _camera;
-        private YDLidarX2 _lidar;
+        private LidarBase _lidar;
         private Thread _infoThread;
 
         public ConnectionReal(Robot robot, Updater updater, RobotConfiguration conf)
@@ -40,9 +40,10 @@ namespace RobocadCs.Internal.Common
 
             try
             {
-                _lidar = new YDLidarX2(robot, conf.LidarPort);
-                _lidar.Connect();
-                _lidar.StartScan();
+                _lidar = conf.LidarType == LidarTypes.YdLidarX2
+                    ? (LidarBase)new YDLidarX2(robot, conf.LidarPort)
+                    : new N10Lidar(robot, conf.LidarPort);
+                _lidar.Start();
             }
             catch (Exception e)
             {
@@ -67,11 +68,7 @@ namespace RobocadCs.Internal.Common
 
         public override void Stop()
         {
-            if (_lidar != null)
-            {
-                _lidar.StopScan();
-                _lidar.Disconnect();
-            }
+            _lidar?.Stop();
             _updater.StopRobotInfoThread = true;
             try { _infoThread?.Join(1000); } catch { }
             try { _camera?.Dispose(); } catch { }

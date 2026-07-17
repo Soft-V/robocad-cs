@@ -6,7 +6,7 @@ using System.Threading;
 
 namespace RobocadCs.Internal.Common
 {
-    public class YDLidarX2
+    public class YDLidarX2 : LidarBase
     {
         private readonly Robot _robot;
         private readonly string _port;
@@ -86,7 +86,18 @@ namespace RobocadCs.Internal.Common
             return true;
         }
 
-        public float[] GetData()
+        public override void Start()
+        {
+            if (Connect()) StartScan();
+        }
+
+        public override void Stop()
+        {
+            StopScan();
+            Disconnect();
+        }
+
+        public override float[] GetData()
         {
             lock (_lock)
             {
