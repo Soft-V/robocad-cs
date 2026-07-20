@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using OpenCvSharp;
 using RobocadCs.Internal;
 using RobocadCs.Internal.Common;
@@ -8,6 +8,9 @@ namespace RobocadCs
     public class RobotAlgaritm : Robot
     {
         private readonly AlgaritmInternal _internal;
+        private float resetedYawVal = 0;
+        private float resetedPitchVal = 0;
+        private float resetedRollVal = 0;
 
         public RobotAlgaritm(bool isRealRobot = false, DefaultAlgaritmConfiguration conf = null)
             : this(isRealRobot, (RobotConfiguration)(conf ?? new DefaultAlgaritmConfiguration())) { }
@@ -41,9 +44,12 @@ namespace RobocadCs
         public int MotorEnc2 => _internal.EncMotor2;
         public int MotorEnc3 => _internal.EncMotor3;
 
-        public float Yaw => _internal.Yaw;
-        public float Pitch => _internal.Pitch;
-        public float Roll => _internal.Roll;
+        public float Yaw => RerangeAngle360(_internal.Yaw - resetedYawVal);
+        public void ResetYaw() => resetedYawVal = Yaw;
+        public float Pitch => RerangeAngle360(_internal.Pitch - resetedPitchVal);
+        public void ResetPitch() => resetedPitchVal = Pitch;
+        public float Roll => RerangeAngle360(_internal.Roll - resetedRollVal);
+        public void ResetRoll() => resetedRollVal = Roll;
 
         public float Us1 => _internal.Ultrasound1;
         public float Us2 => _internal.Ultrasound2;
@@ -85,5 +91,14 @@ namespace RobocadCs
         public float[] LidarData => _internal.GetLidar();
 
         public void SetAngleServo(float value, int port) => _internal.SetServoAngle(value, port - 1);
+
+        private float RerangeAngle360(float angle)
+        {
+            while (angle > 360)
+                angle -= 360;
+            while (angle < 0)
+                angle += 360;
+            return angle;
+        }
     }
 }

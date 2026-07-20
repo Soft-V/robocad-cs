@@ -1,4 +1,4 @@
-using OpenCvSharp;
+﻿using OpenCvSharp;
 using RobocadCs.Internal;
 using RobocadCs.Internal.Common;
 
@@ -7,6 +7,7 @@ namespace RobocadCs
     public class RobotVMXTitan : Robot
     {
         private readonly StudicaInternal _internal;
+        private float resetedYawVal = 0;
 
         public RobotVMXTitan(bool isRealRobot = false, DefaultStudicaConfiguration conf = null)
             : this(isRealRobot, (RobotConfiguration)(conf ?? new DefaultStudicaConfiguration())) { }
@@ -40,7 +41,8 @@ namespace RobocadCs
         public int MotorEnc2 => _internal.EncMotor2;
         public int MotorEnc3 => _internal.EncMotor3;
 
-        public float Yaw => _internal.Yaw;
+        public float Yaw => RerangeAngle180(_internal.Yaw - resetedYawVal);
+        public void ResetYaw() => resetedYawVal = Yaw;
         public float Us1 => _internal.Ultrasound1;
         public float Us2 => _internal.Ultrasound2;
 
@@ -66,5 +68,14 @@ namespace RobocadCs
         public void SetAngleHcdio(float value, int port) => _internal.SetServoAngle(value, port - 1);
         public void SetPwmHcdio(float value, int port) => _internal.SetServoPwm(value, port - 1);
         public void SetBoolHcdio(bool value, int port) => _internal.SetLedState(value, port - 1);
+
+        private float RerangeAngle180(float angle)
+        {
+            while (angle > 180)
+                angle -= 360;
+            while (angle < -180)
+                angle += 360;
+            return angle;
+        }
     }
 }
