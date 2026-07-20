@@ -1,4 +1,5 @@
 using System;
+using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net;
@@ -223,6 +224,8 @@ namespace RobocadCs
         public byte[] OutBytes = Encoding.UTF8.GetBytes("null");
         public string StrFromClient = "-1";
 
+        public volatile IPAddress ClientAddress;
+
         protected BasePort(int port, Action handler, float delay)
         {
             Port = port; EventHandler = handler; Delay = delay;
@@ -243,7 +246,9 @@ namespace RobocadCs
                 ServerFd.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
                 ServerFd.Bind(new IPEndPoint(IPAddress.Any, Port));
                 ServerFd.Listen(1);
-                return ServerFd.Accept();
+                var client = ServerFd.Accept();
+                try { ClientAddress = (client.RemoteEndPoint as IPEndPoint)?.Address; } catch { }
+                return client;
             }
             catch { return null; }
         }
@@ -313,9 +318,18 @@ namespace RobocadCs
 
     internal sealed class ConnectionHelper
     {
+        private const int CameraUdpPort = 63260;
+        private const int CameraUdpChunk = 1400;
+
         private readonly Shufflecad _sc;
         private readonly Robot _robot;
-        private int _cameraToggler;
+
+        private volatile int _selectedCamera;
+
+        private Socket _cameraUdpSock;
+        private Thread _cameraUdpWorker;
+        private volatile bool _stopCameraUdp;
+        private uint _cameraFrameId;
 
         private readonly ShflTalkPort _out;
         private readonly ShflListenPort _in;
@@ -333,7 +347,7 @@ namespace RobocadCs
             _chart = new ShflTalkPort(63255, OnChartVars, 0.002f);
             _outcad = new ShflTalkPort(63257, OnOutcadVars, 0.1f);
             _rpi = new ShflTalkPort(63256, OnRpiVars, 0.5f);
-            _camera = new ShflTalkPort(63254, OnCameraVars, 0.03f, true);
+            _camera = new ShflTalkPort(63254, OnCameraVars, 0.03f);
             _joy = new ShflListenPort(63259, OnJoyVars, 0.004f);
             Start();
         }
@@ -347,12 +361,14 @@ namespace RobocadCs
             _rpi.StartTalking();
             _camera.StartTalking();
             _joy.StartListening();
+            StartCameraUdp();
         }
 
         public void Stop()
         {
             _out.Stop(); _in.Stop(); _chart.Stop(); _outcad.Stop();
             _rpi.Stop(); _camera.Stop(); _joy.Stop();
+            StopCameraUdp();
         }
 
         private void OnOutVars()
@@ -427,24 +443,88 @@ namespace RobocadCs
                 if (_sc.CameraVariables.Count == 0)
                 {
                     _camera.OutString = "null";
-                    _camera.OutBytes = Encoding.UTF8.GetBytes("null");
-                    return;
                 }
-
-                int requested;
-                if (!int.TryParse(_camera.StrFromClient, out requested)) requested = -1;
-
-                int idx;
-                if (requested == -1)
+                else
                 {
-                    idx = _cameraToggler;
-                    _cameraToggler = (_cameraToggler + 1) % _sc.CameraVariables.Count;
+                    var segs = new List<string>(_sc.CameraVariables.Count);
+                    foreach (var c in _sc.CameraVariables)
+                        segs.Add(c.Name + ";" + c.Width + ":" + c.Height);
+                    _camera.OutString = string.Join("&", segs);
                 }
-                else idx = requested % _sc.CameraVariables.Count;
+            }
 
-                var cur = _sc.CameraVariables[idx];
-                _camera.OutString = cur.Name + ";" + cur.Width + ":" + cur.Height;
-                _camera.OutBytes = cur.GetValue();
+            if (int.TryParse(_camera.StrFromClient, out int sel))
+                _selectedCamera = sel;
+        }
+
+        private void StartCameraUdp()
+        {
+            _stopCameraUdp = false;
+            _cameraUdpSock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            _cameraUdpWorker = new Thread(CameraUdpLoop) { IsBackground = true };
+            _cameraUdpWorker.Start();
+        }
+
+        private void StopCameraUdp()
+        {
+            _stopCameraUdp = true;
+            try { _cameraUdpSock?.Close(); } catch { }
+            try { _cameraUdpWorker?.Join(1000); } catch { }
+        }
+
+        private void CameraUdpLoop()
+        {
+            while (!_stopCameraUdp)
+            {
+                try
+                {
+                    IPAddress target = _camera.ClientAddress;
+                    byte[] jpeg = null;
+                    int idx = _selectedCamera;
+
+                    if (target != null)
+                    {
+                        lock (_sc.DataLock)
+                        {
+                            if (_sc.CameraVariables.Count > 0)
+                            {
+                                if (idx < 0 || idx >= _sc.CameraVariables.Count) idx = 0;
+                                jpeg = _sc.CameraVariables[idx].GetValue();
+                            }
+                        }
+                    }
+
+                    if (target != null && IsJpeg(jpeg))
+                        SendFrameUdp(target, (ushort)idx, jpeg);
+                }
+                catch { }
+
+                Thread.Sleep(30);
+            }
+        }
+
+        private static bool IsJpeg(byte[] data) =>
+            data != null && data.Length >= 2 && data[0] == 0xFF && data[1] == 0xD8;
+
+        private void SendFrameUdp(IPAddress target, ushort cameraIndex, byte[] jpeg)
+        {
+            uint frameId = _cameraFrameId++;
+            int total = (jpeg.Length + CameraUdpChunk - 1) / CameraUdpChunk;
+            if (total < 1) total = 1;
+            if (total > ushort.MaxValue) return;
+
+            var ep = new IPEndPoint(target, CameraUdpPort);
+            for (int i = 0; i < total; i++)
+            {
+                int off = i * CameraUdpChunk;
+                int len = Math.Min(CameraUdpChunk, jpeg.Length - off);
+                byte[] pkt = new byte[10 + len];
+                BinaryPrimitives.WriteUInt32LittleEndian(pkt.AsSpan(0, 4), frameId);
+                BinaryPrimitives.WriteUInt16LittleEndian(pkt.AsSpan(4, 2), cameraIndex);
+                BinaryPrimitives.WriteUInt16LittleEndian(pkt.AsSpan(6, 2), (ushort)i);
+                BinaryPrimitives.WriteUInt16LittleEndian(pkt.AsSpan(8, 2), (ushort)total);
+                Buffer.BlockCopy(jpeg, off, pkt, 10, len);
+                try { _cameraUdpSock.SendTo(pkt, ep); } catch { }
             }
         }
 
