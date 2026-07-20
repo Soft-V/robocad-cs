@@ -1,4 +1,4 @@
-using OpenCvSharp;
+﻿using OpenCvSharp;
 using RobocadCs.Internal;
 using RobocadCs.Internal.Common;
 
@@ -7,6 +7,7 @@ namespace RobocadCs.Common
     public class CommonRobot : Robot
     {
         private readonly CommonRobotInternal _internal;
+        private float resetedYawVal = 0;
 
         public CommonRobot(bool isRealRobot = false, DefaultCommonConfiguration conf = null)
             : this(isRealRobot, (RobotConfiguration)(conf ?? new DefaultCommonConfiguration())) { }
@@ -48,7 +49,8 @@ namespace RobocadCs.Common
         public int MotorEnc6 => _internal.EncMotor6;
         public int MotorEnc7 => _internal.EncMotor7;
 
-        public float Yaw => _internal.Yaw;
+        public float Yaw => RerangeAngle180(_internal.Yaw - resetedYawVal);
+        public void ResetYaw() => resetedYawVal = Yaw;
         public float Us1 => _internal.Ultrasound1;
         public float Us2 => _internal.Ultrasound2;
         public float Us3 => _internal.Ultrasound3;
@@ -78,5 +80,14 @@ namespace RobocadCs.Common
 
         public void SetAngleServo(float value, int port) => _internal.SetServoAngle(value, port - 1);
         public void SetPwmServo(float value, int port) => _internal.SetServoPwm(value, port - 1);
+
+        private float RerangeAngle180(float angle)
+        {
+            while (angle > 180)
+                angle -= 360;
+            while (angle < -180)
+                angle += 360;
+            return angle;
+        }
     }
 }
