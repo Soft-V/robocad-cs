@@ -33,7 +33,7 @@ static class Program
 
         dash.PrintToLog($"Test log");
 
-        var vYaw = dash.AddVar(new ShuffleVariable("yaw", ShuffleVariable.FloatType, ShuffleVariable.InVar ));
+        var vYaw = dash.AddVar(new ShuffleVariable("yaw", ShuffleVariable.FloatType, ShuffleVariable.InVar));
         var vYawG = dash.AddVar(new ShuffleVariable("yaw_g", ShuffleVariable.ChartType, ShuffleVariable.OutVar));
         var vUs1 = dash.AddVar(new ShuffleVariable("us_1", ShuffleVariable.FloatType, ShuffleVariable.OutVar));
         var vUs2 = dash.AddVar(new ShuffleVariable("us_2", ShuffleVariable.FloatType, ShuffleVariable.OutVar));
@@ -47,8 +47,11 @@ static class Program
         var vServo = dash.AddVar(new ShuffleVariable("servo_1", ShuffleVariable.FloatType, ShuffleVariable.InVar));
         var vJoyRaw = dash.AddVar(new ShuffleVariable("joy_raw", ShuffleVariable.StringType, ShuffleVariable.OutVar));
         var cameraWidth = dash.AddVar(new ShuffleVariable("cameraWidth", ShuffleVariable.FloatType, ShuffleVariable.InVar));
-
+ 
         var cam = dash.AddVar(new CameraVariable("camera"));
+        var cam2 = dash.AddVar(new CameraVariable("camera2"));
+        // var cam3 = dash.AddVar(new CameraVariable("camera3"));
+
 
         Console.WriteLine("RobocadDemo запущен (симулятор): робот управляется геймпадом,");
         Console.WriteLine("левый стик — движение, триггеры — поворот, правый стик — 4-й мотор,");
@@ -106,6 +109,11 @@ static class Program
             vDrive.SetString(drive);
             analog1.SetFloat(robot.Analog1);
             
+            float[] lidar = robot.LidarData;
+            if (lidar.Length > 0) vLidar.SetRadar(lidar);
+
+            // Port 8: servos 1 and 2 are driven by the gamepad in Drive().
+            robot.SetAngleServo(vServo.GetFloat(), 8);
             
 
             using (Mat img = robot.CameraImage)

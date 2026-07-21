@@ -31,15 +31,25 @@ namespace RobocadCs
             base.Dispose();
         }
 
+        private int lastMotorEnc0 = 0;
+        private int lastMotorEnc1 = 0;
+        private int lastMotorEnc2 = 0;
+        private int lastMotorEnc3 = 0;
+
         public float MotorSpeed0 { get => _internal.SpeedMotor0; set => _internal.SpeedMotor0 = value; }
         public float MotorSpeed1 { get => _internal.SpeedMotor1; set => _internal.SpeedMotor1 = value; }
         public float MotorSpeed2 { get => _internal.SpeedMotor2; set => _internal.SpeedMotor2 = value; }
         public float MotorSpeed3 { get => _internal.SpeedMotor3; set => _internal.SpeedMotor3 = value; }
 
-        public int MotorEnc0 => _internal.EncMotor0;
-        public int MotorEnc1 => _internal.EncMotor1;
-        public int MotorEnc2 => _internal.EncMotor2;
-        public int MotorEnc3 => _internal.EncMotor3;
+        public int MotorEnc0 => _internal.EncMotor0 - lastMotorEnc0;
+        public int MotorEnc1 => _internal.EncMotor1 - lastMotorEnc1;
+        public int MotorEnc2 => _internal.EncMotor2 - lastMotorEnc2;
+        public int MotorEnc3 => _internal.EncMotor3 - lastMotorEnc3;
+
+        public void ResetMotorEnc0() { lastMotorEnc0 = _internal.EncMotor0; }
+        public void ResetMotorEnc1() { lastMotorEnc1 = _internal.EncMotor1; }
+        public void ResetMotorEnc2() { lastMotorEnc2 = _internal.EncMotor2; }
+        public void ResetMotorEnc3() { lastMotorEnc3 = _internal.EncMotor3; }
 
         public float Yaw => RerangeAngle180(_internal.Yaw - resetedYawVal);
         public void ResetYaw() => resetedYawVal = Yaw;
