@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Threading;
 using RobocadCs.Internal.Common;
@@ -24,7 +24,19 @@ namespace RobocadCs.Internal
                 StepMotor2Steps = steps; StepMotor2StepsPerS = stepsPerSecond; StepMotor2Direction = direction;
             }
         }
-        
+
+        public void StepMotorReset(int num)
+        {
+            if (num == 1)
+            {
+                StepMotor1Steps = 0; StepMotor1StepsPerS = 0; StepMotor1Direction = false;
+            }
+            else if (num == 2)
+            {
+                StepMotor2Steps = 0; StepMotor2StepsPerS = 0; StepMotor2Direction = false;
+            }
+        }
+
         protected override TitanCom CreateTitanCom() => new TitanComAlgaritm();
         protected override VmxSpi CreateVmxSpi() => new VmxSpiAlgaritm();
         protected override RobocadConnection CreateRobocadConnection() => new RobocadConnectionAlgaritm();
@@ -105,6 +117,9 @@ namespace RobocadCs.Internal
 
                     _ri.IsStep1Busy = data[18] != 0;
                     _ri.IsStep2Busy = data[19] != 0;
+
+                    if (_ri.IsStep1Busy) (_ri as AlgaritmInternal).StepMotorReset(1);
+                    if (_ri.IsStep2Busy) (_ri as AlgaritmInternal).StepMotorReset(2);
                 }
                 else
                 {

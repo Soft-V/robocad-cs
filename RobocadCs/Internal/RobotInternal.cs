@@ -1,4 +1,4 @@
-using OpenCvSharp;
+﻿using OpenCvSharp;
 using RobocadCs.Internal.Common;
 
 namespace RobocadCs.Internal;
@@ -21,8 +21,8 @@ public abstract class RobotInternal
     public bool LimitH2 { get; set; }
     public bool LimitL3 { get; set; }
     public bool LimitH3 { get; set; }
-    public float AdditionalServo1 { get; set; }
-    public float AdditionalServo2 { get; set; }
+    public float AdditionalServo1 { get; set; } = 255.0f;
+    public float AdditionalServo2 { get; set; } = 255.0f;
 
     public bool IsStep1Busy { get; set; }
     public bool IsStep2Busy { get; set; }
@@ -64,7 +64,7 @@ public abstract class RobotInternal
 
     public readonly bool[] Inputs = new bool[4];
     public readonly bool[] Outputs = new bool[4];
-    public readonly float[] ServoAngles = new float[8];
+    public readonly float[] ServoAngles = new float[8] { 255f, 255f, 255f, 255f, 255f, 255f, 255f, 255f };
 
     protected readonly Robot _robot;
     private readonly ConnectionBase _connection;
