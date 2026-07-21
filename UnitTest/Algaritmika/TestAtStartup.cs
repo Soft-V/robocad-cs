@@ -1,6 +1,3 @@
-using RobocadCs;
-using Xunit;
-using Xunit.v3.Priority;
 namespace UnitTest.Algaritmika
 {
     [Collection("RobocadAlgaritmikaHandlerCollection")]
@@ -22,7 +19,6 @@ namespace UnitTest.Algaritmika
                 () => Assert.NotEqual(0.0f, _handler.robot.Analog4),
                 () => Assert.NotEqual(0.0f, _handler.robot.Analog5),
                 () => Assert.NotEqual(0.0f, _handler.robot.Analog6),
-
                 () => Assert.NotEqual(0.0f, _handler.robot.Analog7),
                 () => Assert.NotEqual(0.0f, _handler.robot.Analog8)
             );

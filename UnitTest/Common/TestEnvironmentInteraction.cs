@@ -1,8 +1,8 @@
-﻿using Xunit.v3.Priority;
+﻿using Xunit.Priority;
 
 namespace UnitTest.Common
 {
-    [Collection("RobocadCommonHandlerCollection"), TestCaseOrderer(typeof(PriorityOrderer))]
+    [Collection("RobocadCommonHandlerCollection"), TestCaseOrderer(PriorityOrderer.Name, PriorityOrderer.Assembly)]
     public class TestEnvironmentInteraction
     {
         private readonly RobotHandlerFixture _handler;
@@ -76,7 +76,7 @@ namespace UnitTest.Common
         }
 
         [Fact(Timeout = 30_000)]
-        public void TestButtonsReactionOnUserInteraction()
+        public async void TestButtonsReactionOnUserInteraction()
         {
             bool emsButtonPressedOnce = false;
             bool startButtonPressedOnce = false;

@@ -48,8 +48,11 @@ static class Program
         var vServo = dash.AddVar(new ShuffleVariable("servo_1", ShuffleVariable.FloatType, ShuffleVariable.InVar));
         var vJoyRaw = dash.AddVar(new ShuffleVariable("joy_raw", ShuffleVariable.StringType, ShuffleVariable.OutVar));
         var cameraWidth = dash.AddVar(new ShuffleVariable("cameraWidth", ShuffleVariable.FloatType, ShuffleVariable.InVar));
-
+ 
         var cam = dash.AddVar(new CameraVariable("camera"));
+        var cam2 = dash.AddVar(new CameraVariable("camera2"));
+        // var cam3 = dash.AddVar(new CameraVariable("camera3"));
+
 
         Console.WriteLine("RobocadDemo запущен (симулятор): робот управляется геймпадом,");
         Console.WriteLine("левый стик — движение, триггеры — поворот, правый стик — 4-й мотор,");

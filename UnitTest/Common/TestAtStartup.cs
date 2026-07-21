@@ -1,8 +1,8 @@
-﻿using Xunit.v3.Priority;
+﻿using Xunit.Priority;
 
 namespace UnitTest.Common
 {
-    [Collection("RobocadCommonHandlerCollection"), TestCaseOrderer(typeof(PriorityOrderer))]
+    [Collection("RobocadCommonHandlerCollection"), TestCaseOrderer(PriorityOrderer.Name, PriorityOrderer.Assembly)]
     public class TestAtStartup
     {
         private readonly RobotHandlerFixture _handler;

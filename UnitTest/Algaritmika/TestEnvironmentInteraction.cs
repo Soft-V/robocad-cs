@@ -1,8 +1,8 @@
-﻿using Xunit.v3.Priority;
+﻿using Xunit.Priority;
 
 namespace UnitTest.Algaritmika
 {
-    [Collection("RobocadAlgaritmikaHandlerCollection"), TestCaseOrderer(typeof(PriorityOrderer))]
+    [Collection("RobocadAlgaritmikaHandlerCollection"), TestCaseOrderer(PriorityOrderer.Name, PriorityOrderer.Assembly)]
     public class TestEnvironmentInteraction
     {
         private readonly RobotHandlerFixture _handler;
@@ -44,7 +44,7 @@ namespace UnitTest.Algaritmika
         }
 
         [Fact(Timeout = 30_000)]
-        public void TestButtonsReactionOnUserInteraction()
+        public async void TestButtonsReactionOnUserInteraction()
         {
             bool emsButtonPressedOnce = false;
             bool startButtonPressedOnce = false;

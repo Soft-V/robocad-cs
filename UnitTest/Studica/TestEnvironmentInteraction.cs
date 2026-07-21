@@ -1,8 +1,8 @@
-﻿using Xunit.v3.Priority;
+﻿using Xunit.Priority;
 
 namespace UnitTest.Studica
 {
-    [Collection("RobocadStudicaHandlerCollection"), TestCaseOrderer(typeof(PriorityOrderer))]
+    [Collection("RobocadStudicaHandlerCollection"), TestCaseOrderer(PriorityOrderer.Name, PriorityOrderer.Assembly)]
     public class TestEnvironmentInteraction
     {
         private readonly RobotHandlerFixture _handler;
@@ -45,7 +45,7 @@ namespace UnitTest.Studica
         }
 
         [Fact(Timeout = 30_000)]
-        public void TestButtonsReactionOnUserInteraction()
+        public async void TestButtonsReactionOnUserInteraction()
         {
             bool emsButtonPressedOnce = false;
             bool startButtonPressedOnce = false;
