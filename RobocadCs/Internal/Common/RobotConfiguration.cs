@@ -5,6 +5,7 @@ namespace RobocadCs.Internal.Common
         public int CameraIndex { get; set; } = 0;
         public string LibHolderFirstPath { get; set; } = "/home/pi";
         public bool WithPiBlaster { get; set; } = true;
+        public LidarTypes LidarType { get; set; } = LidarTypes.N10Lidar;
         public string LidarPort { get; set; } = "/dev/ttyUSB0";
 
         public string SimLogPath { get; set; } = "./robocad.log";

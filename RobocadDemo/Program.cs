@@ -26,11 +26,10 @@ static class Program
     {
         int runSeconds = (args.Length > 0 && int.TryParse(args[0], out int s)) ? s : -1;
 
-        var robot = new RobotAlgaritm(false);
+        var robot = new RobotVMXTitan(false);
         var dash = new Shufflecad(robot);
         Thread.Sleep(100);
 
-        robot.SetPidSettings(true, 0.14f, 0.1f, 0);
 
         dash.PrintToLog($"Test log");
 
@@ -74,8 +73,8 @@ static class Program
             robot.MotorSpeed0 = ApplyDeadzone(x + r);
             robot.MotorSpeed1 = ApplyDeadzone(StickToSpeed(joy.RightStickY) / 4);
 
-            robot.SetAngleServo(joy.BtnA ? 180 : 0, 1);
-            robot.SetAngleServo(joy.BtnB ? 180 : 0, 2);
+            robot.SetAngleHcdio(joy.BtnA ? 180 : 0, 1);
+            robot.SetPwmHcdio(joy.BtnB ? 180 : 0, 2);
         }
 
         void Halt()
@@ -109,17 +108,13 @@ static class Program
             vPower.SetFloat(robot.Power);
             vDrive.SetString(drive);
             analog1.SetFloat(robot.Analog1);
-
+            
             float[] lidar = robot.LidarData;
             if (lidar.Length > 0) vLidar.SetRadar(lidar);
 
             // Port 8: servos 1 and 2 are driven by the gamepad in Drive().
             robot.SetAngleServo(vServo.GetFloat(), 8);
             
-            const int OUT_COUNT = 2;
-            int activeOut = (int)((frame / 20) % OUT_COUNT);
-            for (int i = 0; i < OUT_COUNT; i++)
-                robot.Outputs[i] = (i == activeOut);
 
             using (Mat img = robot.CameraImage)
             {
