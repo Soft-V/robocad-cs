@@ -3,11 +3,11 @@
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
-    <VersionPrefix>1.3.4</VersionPrefix>
+    <VersionPrefix>1.4.0</VersionPrefix>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>RobocadCs</Title>
     <Company>c3n9</Company>
-    <Description>C# port of the robocadV library (Soft-V). Mirrors robocad-py: Algaritm, Studica (VMX/Titan), Common robots, Shufflecad dashboard and YDLidar X2.</Description>
+    <Description>C# port of the robocadV library (Soft-V). Mirrors robocad-py: Algaritm, Studica (VMX/Titan), Common robots, Shufflecad dashboard and YDLidar X2, n10.</Description>
     <PackageProjectUrl>https://www.nuget.org/packages/RobocadCs</PackageProjectUrl>
     <Copyright>https://github.com/Soft-V/robocad-cs/blob/master/LICENSE</Copyright>
     <RepositoryUrl>https://github.com/Soft-V/robocad-cs</RepositoryUrl>
