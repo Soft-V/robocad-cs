@@ -1,6 +1,5 @@
 using System;
-using System.Diagnostics;
-using System.IO;
+using System.Collections.Generic;
 using System.Threading;
 using RobocadCs.Internal.Common;
 
@@ -11,8 +10,30 @@ namespace RobocadCs.Internal
         public static readonly int[] HcdioConstArray = { 4, 18, 17, 27, 23, 22, 24, 25, 7, 5 };
         public readonly float[] HcdioValues = new float[10];
 
+        private readonly object _hcdioGate = new object();
+        private readonly PigpioPwm _pwm;
+        private bool _stopped;
+
         public StudicaInternal(Robot robot, RobotConfiguration conf) : base(robot, conf)
         {
+            if (robot.OnRealRobot)
+                _pwm = new PigpioPwm(conf.PigpioPipePath, conf.PigpioResponsePath,
+                                    conf.HcdioPwmFrequency, conf.PigpioTimeout);
+        }
+
+        public override void Stop()
+        {
+            lock (_hcdioGate)
+            {
+                _stopped = true;
+                Array.Clear(HcdioValues, 0, HcdioValues.Length);
+            }
+            var errors = new List<Exception>();
+            try { _pwm?.Stop(HcdioConstArray); }
+            catch (Exception error) { errors.Add(error); }
+            try { base.Stop(); }
+            catch (Exception error) { errors.Add(error); }
+            if (errors.Count != 0) throw new AggregateException("Robot stop failed", errors);
         }
 
         public int RawEncMotor0 { get; set; }
@@ -29,41 +50,22 @@ namespace RobocadCs.Internal
         public bool Flex6 { get; set; }
         public bool Flex7 { get; set; }
 
-        public void SetServoAngle(float angle, int pin)
-        {
-            double dut = 0.000666 * angle + 0.05;
-            HcdioValues[pin] = (float)dut;
-            EchoToFile(HcdioConstArray[pin] + "=" + dut);
-        }
+        public void SetServoAngle(float angle, int pin) => SetHcdioDuty(0.000666 * angle + 0.05, pin);
+        public void SetLedState(bool state, int pin) => SetHcdioDuty(state ? 0.2 : 0.0, pin);
+        public void SetServoPwm(float pwm, int pin) => SetHcdioDuty(pwm, pin);
+        public void DisableServo(int pin) => SetHcdioDuty(0.0, pin);
 
-        public void SetLedState(bool state, int pin)
+        private void SetHcdioDuty(double duty, int pin)
         {
-            HcdioValues[pin] = state ? 0.2f : 0.0f;
-            EchoToFile(HcdioConstArray[pin] + "=" + (state ? 0.2f : 0.0f).ToString(System.Globalization.CultureInfo.InvariantCulture));
-        }
-
-        public void SetServoPwm(float pwm, int pin)
-        {
-            HcdioValues[pin] = pwm;
-            EchoToFile(HcdioConstArray[pin] + "=" + pwm);
-        }
-
-        public void DisableServo(int pin)
-        {
-            HcdioValues[pin] = 0.0f;
-            EchoToFile(HcdioConstArray[pin] + "=0.0");
-        }
-
-        private void EchoToFile(string s)
-        {
-            if (!_robot.OnRealRobot) return;
-            try
+            if (pin < 0 || pin >= HcdioConstArray.Length)
+                throw new ArgumentOutOfRangeException(nameof(pin), "HCDIO port must be from 1 to 10");
+            if (!(duty >= 0 && duty <= 1)) throw new ArgumentOutOfRangeException(nameof(duty));
+            lock (_hcdioGate)
             {
-                using (var f = new StreamWriter("/dev/pi-blaster", append: true))
-                    f.WriteLine(s);
-            }
-            catch
-            {
+                if (_stopped && duty != 0)
+                    throw new InvalidOperationException("Robot has been stopped; HCDIO PWM cannot be enabled");
+                _pwm?.SetDutycycle(HcdioConstArray[pin], duty);
+                HcdioValues[pin] = (float)duty;
             }
         }
 

@@ -19,6 +19,7 @@ namespace RobocadCs
             SignalHandler.Register(Stop);
         }
 
+        // Drives all HCDIO signals LOW. Servo torque release depends on its electronics.
         public void Stop()
         {
             _internal.Stop();

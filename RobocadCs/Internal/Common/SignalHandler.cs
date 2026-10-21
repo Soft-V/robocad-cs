@@ -9,12 +9,12 @@ namespace RobocadCs.Internal.Common
             Console.CancelKeyPress += (s, e) =>
             {
                 e.Cancel = true;
-                try { stop(); } catch { }
+                try { stop(); } catch (Exception error) { Console.Error.WriteLine("Robot stop failed: " + error); }
                 Environment.Exit(0);
             };
             AppDomain.CurrentDomain.ProcessExit += (s, e) =>
             {
-                try { stop(); } catch { }
+                try { stop(); } catch (Exception error) { Console.Error.WriteLine("Robot stop failed: " + error); }
             };
         }
     }

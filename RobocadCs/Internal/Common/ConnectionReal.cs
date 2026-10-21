@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.Threading;
 using OpenCvSharp;
 
@@ -48,18 +47,6 @@ namespace RobocadCs.Internal.Common
             catch (Exception e)
             {
                 _robot.WriteLog("Exception while creating lidar instance: " + e.Message);
-            }
-
-            if (conf.WithPiBlaster)
-            {
-                try
-                {
-                    Process.Start(new ProcessStartInfo("sudo", "/home/pi/pi-blaster/pi-blaster --pcm")
-                    {
-                        UseShellExecute = false
-                    });
-                }
-                catch (Exception e) { _robot.WriteLog("pi-blaster start failed: " + e.Message); }
             }
 
             _infoThread = new Thread(_updater.RunUpdater) { IsBackground = true };

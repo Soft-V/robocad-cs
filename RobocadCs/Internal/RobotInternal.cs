@@ -1,4 +1,6 @@
-﻿using OpenCvSharp;
+﻿using System;
+using System.Collections.Generic;
+using OpenCvSharp;
 using RobocadCs.Internal.Common;
 
 namespace RobocadCs.Internal;
@@ -95,12 +97,19 @@ public abstract class RobotInternal
         }
     }
     
-    public void Stop()
+    public virtual void Stop()
     {
-        _titan?.Stop();
-        _vmx?.Stop();
-        _robocad?.Stop();
-        _connection?.Stop();
+        var errors = new List<Exception>();
+        void Cleanup(Action action)
+        {
+            try { action(); }
+            catch (Exception error) { errors.Add(error); }
+        }
+        Cleanup(() => _titan?.Stop());
+        Cleanup(() => _vmx?.Stop());
+        Cleanup(() => _robocad?.Stop());
+        Cleanup(() => _connection?.Stop());
+        if (errors.Count != 0) throw new AggregateException("Robot stop failed", errors);
     }
     
     protected Updater CreateUpdater(Robot robot) => new Updater(robot);

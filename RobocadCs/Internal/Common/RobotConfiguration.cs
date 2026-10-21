@@ -4,7 +4,11 @@ namespace RobocadCs.Internal.Common
     {
         public int CameraIndex { get; set; } = 0;
         public string LibHolderFirstPath { get; set; } = "/home/pi";
-        public bool WithPiBlaster { get; set; } = true;
+        // pigpiod is managed by the OS, with its FIFO interface enabled.
+        public string PigpioPipePath { get; set; } = "/dev/pigpio";
+        public string PigpioResponsePath { get; set; } = "/dev/pigout";
+        public int HcdioPwmFrequency { get; set; } = 100;
+        public double PigpioTimeout { get; set; } = 1.0;
         public LidarTypes LidarType { get; set; } = LidarTypes.N10Lidar;
         public string LidarPort { get; set; } = "/dev/ttyUSB0";
 
@@ -25,7 +29,6 @@ namespace RobocadCs.Internal.Common
     {
         public DefaultAlgaritmConfiguration()
         {
-            WithPiBlaster = false;
             VmxPort = "/dev/spidev0.0";
             VmxCh = 0;
         }
